@@ -1,8 +1,8 @@
 # Dotfiles
 
 ```shell
-$ echo /usr/local/bin/fish | sudo tee -a /etc/shells
-$ chsh -s /usr/local/bin/fish
+$ echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
+$ chsh -s /opt/homebrew/bin/fish
 ```
 
 ## Tools 
@@ -15,6 +15,8 @@ brew install spacebar
 brew install tmux
 brew install starship
 brew install fish
+brew install stow
+brew install exa
 ```
 
 ## Languages and coding tools 

@@ -11,3 +11,5 @@ export PATH="/usr/local/anaconda3/bin:$PATH"
 starship init fish | source
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
+alias ls='exa -lag --header'
+alias vim='nvim'
