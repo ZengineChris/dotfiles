@@ -43,7 +43,7 @@ yabai -m config top_padding                  0
 yabai -m config bottom_padding               0
 yabai -m config left_padding                 0
 yabai -m config right_padding                0
-yabai -m config window_gap                   0
+yabai -m config window_gap                   5
 
 yabai -m rule --add app="^System Preferences$" manage=off
 
@@ -57,14 +57,14 @@ yabai -m rule --add app='Goland IDEA' title='Preferences' manage=off
 yabai -m rule --add app='Goland IDEA' title='Edit configuration' manage=off
 
 # Web browsers
-yabai -m rule --add app="^Google Chrome|Firefox|Safari$" space=1
+yabai -m rule --add app="^Google Chrome|Firefox|Safari$" space=4
 # Text editors
 yabai -m rule --add app="^(Code|RStudio)$" space=2
 # Jetbrains apps
 apps="^(IntelliJ IDEA|PhpStorm|Goland|PyCharm|DataGrip)$"
 yabai -m rule --add app="${apps}" space=3  manage=off
 # Terminal
-yabai -m rule --add app="^(ITerm2)$" space=4
+yabai -m rule --add app="^(ITerm2)$" space=1
 # Music
 yabai -m rule --add app="^(Music)$" space=5
 # Social
