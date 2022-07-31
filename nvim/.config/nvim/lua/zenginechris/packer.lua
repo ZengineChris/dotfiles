@@ -28,8 +28,21 @@ return require('packer').startup(function(use)
     use("nvim-lua/lsp_extensions.nvim")
     use("glepnir/lspsaga.nvim")
     use("simrat39/symbols-outline.nvim")
+    use {
+        'lewis6991/gitsigns.nvim',
+            config = function()
+                require('gitsigns').setup()
+            end
+        }
 
 
+    use {
+    'kyazdani42/nvim-tree.lua',
+        requires = {
+            'kyazdani42/nvim-web-devicons', -- optional, for file icons
+        },
+        tag = 'nightly' -- optional, updated every week. (see issue #1193)
+    }
     use("nvim-treesitter/nvim-treesitter", {
         run = ":TSUpdate"
     })
