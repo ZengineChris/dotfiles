@@ -35,6 +35,8 @@ return require('packer').startup(function(use)
             end
         }
 
+    use("L3MON4D3/LuaSnip")
+    use("saadparwaiz1/cmp_luasnip")
 
     use {
     'kyazdani42/nvim-tree.lua',
@@ -53,6 +55,10 @@ return require('packer').startup(function(use)
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
     }
+
+    use("mfussenegger/nvim-dap")
+    use("rcarriga/nvim-dap-ui")
+    use("theHamsta/nvim-dap-virtual-text")
 
     -- Automatically set up your configuration after cloning packer.nvim
     -- Put this at the end after all plugins
