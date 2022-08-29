@@ -120,6 +120,11 @@ _G.packer_plugins = {
     path = "/Users/christian/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
   },
+  neoformat = {
+    loaded = true,
+    path = "/Users/christian/.local/share/nvim/site/pack/packer/start/neoformat",
+    url = "https://github.com/sbdchd/neoformat"
+  },
   neogit = {
     loaded = true,
     path = "/Users/christian/.local/share/nvim/site/pack/packer/start/neogit",
@@ -209,6 +214,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/christian/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
+  },
+  ["vim-go"] = {
+    loaded = true,
+    path = "/Users/christian/.local/share/nvim/site/pack/packer/start/vim-go",
+    url = "https://github.com/fatih/vim-go"
   }
 }
 
