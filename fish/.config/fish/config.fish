@@ -7,7 +7,7 @@ source $HOME/.config/fish/conf.d/abbr.fish
 
 export PATH="$HOME/bin:$PATH"
 export PATH="/usr/local/anaconda3/bin:$PATH"
-
+set -Ua fish_user_paths $HOME/.cargo/bin
 starship init fish | source
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
