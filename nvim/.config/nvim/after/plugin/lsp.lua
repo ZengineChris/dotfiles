@@ -149,7 +149,14 @@ local lsp_flags = {
     debounce_text_changes = 150,
 }
 require('lspconfig')['dockerls'].setup{config()}
-require('lspconfig')['eslint'].setup{config()}
+require('lspconfig')['eslint'].setup{
+    on_attach = on_attach,
+    flags = lsp_flags,
+    settings = {
+        autoFixOnSave = true
+    }
+
+}
 require('lspconfig')['html'].setup{config()}
 require('lspconfig')['vuels'].setup{config()}
 require('lspconfig')['sqls'].setup{config()}

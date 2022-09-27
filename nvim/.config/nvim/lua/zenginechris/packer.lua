@@ -17,6 +17,7 @@ return require('packer').startup(function(use)
     use("nvim-lua/popup.nvim")
     use("nvim-telescope/telescope.nvim")
     use 'folke/tokyonight.nvim'
+    use { "catppuccin/nvim", as = "catppuccin" }
 
     use "williamboman/nvim-lsp-installer"
     use 'neovim/nvim-lspconfig'

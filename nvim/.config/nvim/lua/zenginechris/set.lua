@@ -41,3 +41,7 @@ vim.opt.shortmess:append("c")
 vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
+
+
+
+vim.g.neoformat_try_node_exe = 1
