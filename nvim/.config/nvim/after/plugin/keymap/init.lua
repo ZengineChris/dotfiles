@@ -9,3 +9,6 @@ nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 nnoremap("n", "nzzzv")
 nnoremap("N", "Nzzzv")
+
+
+nnoremap('<leader>ww',function() vim.lsp.buf.format() end) 
