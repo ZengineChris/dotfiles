@@ -1,24 +1,14 @@
-
--- vim.cmd[[colorscheme tokyonight]]
-
-
-vim.g.catppuccin_flavour = "frappe" -- latte, frappe, macchiato, mocha
-
-require("catppuccin").setup({
-    transparent_background = false,
-    integrations = {
-        telescope = true,
-        treesitter = true,
-        treesitter_context = true,
-        nvimtree = true,
-        gitgutter = true,
-    }
+require('rose-pine').setup({
+    disable_background = true
 })
 
-vim.cmd [[colorscheme catppuccin]]
+function ColorMyPencils(color) 
+	color = color or "rose-pine"
+	vim.cmd.colorscheme(color)
 
-vim.g.gruvbox_contrast_dark = 'hard'
-vim.g.tokyonight_transparent_sidebar = true
-vim.g.tokyonight_transparent = true
-vim.g.gruvbox_invert_selection = '0'
-vim.opt.background = "dark"
+	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+
+end
+
+ColorMyPencils()
