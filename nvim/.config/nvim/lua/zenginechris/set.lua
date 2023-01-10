@@ -1,4 +1,9 @@
+
+vim.g.loaded_netrw = 1
+vim.g.loaded_netrwPlugin = 1
+
 vim.opt.guicursor = ""
+
 
 vim.opt.nu = true
 vim.opt.relativenumber = true
@@ -42,6 +47,6 @@ vim.opt.colorcolumn = "80"
 
 vim.g.mapleader = " "
 
-
+vim.opt.termguicolors = true
 
 vim.g.neoformat_try_node_exe = 1
