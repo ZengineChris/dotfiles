@@ -75,6 +75,27 @@ return require('packer').startup(function(use)
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
 
+    use {
+        "nvim-neorg/neorg",
+        config = function()
+            require('neorg').setup {
+                load = {
+                    ["core.defaults"] = {}, -- Loads default behaviour
+                    ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
+                    ["core.norg.dirman"] = { -- Manages Neorg workspaces
+                        config = {
+                            workspaces = {
+                                notes = "~/notes",
+                            },
+                        },
+                    },
+                },
+            }
+        end,
+        run = ":Neorg sync-parsers",
+        requires = "nvim-lua/plenary.nvim",
+    }
+
     if packer_bootstrap then
         require('packer').sync()
     end
