@@ -15,7 +15,6 @@ local packer_bootstrap = ensure_packer()
 vim.cmd [[packadd packer.nvim]] -- packadd packer module
 
 return require('packer').startup(function(use)
-
     use("wbthomason/packer.nvim")
     use {
         'nvim-telescope/telescope.nvim', tag = '0.1.0',
@@ -23,11 +22,19 @@ return require('packer').startup(function(use)
         requires = { { 'nvim-lua/plenary.nvim' } }
     }
 
+    -- use({
+    --    'rose-pine/neovim',
+    --    as = 'rose-pine',
+    --    config = function()
+    --        vim.cmd('colorscheme rose-pine')
+    --    end
+    --})
+
     use({
-        'rose-pine/neovim',
-        as = 'rose-pine',
+        "rebelot/kanagawa.nvim",
+        as = 'kanagawa',
         config = function()
-            vim.cmd('colorscheme rose-pine')
+            vim.cmd('colorscheme kanagawa')
         end
     })
 
@@ -75,30 +82,19 @@ return require('packer').startup(function(use)
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
     }
 
+    use("lukas-reineke/indent-blankline.nvim")
+
+
+    -- Something to try out
     use {
-        "nvim-neorg/neorg",
+        "folke/which-key.nvim",
         config = function()
-            require('neorg').setup {
-                load = {
-                    ["core.defaults"] = {}, -- Loads default behaviour
-                    ["core.norg.concealer"] = {}, -- Adds pretty icons to your documents
-                    ["core.norg.dirman"] = { -- Manages Neorg workspaces
-                        config = {
-                            workspaces = {
-                                notes = "~/notes",
-                            },
-                        },
-                    },
-                },
-            }
-        end,
-        run = ":Neorg sync-parsers",
-        requires = "nvim-lua/plenary.nvim",
+            vim.o.timeout = true
+            vim.o.timeoutlen = 300
+        end
     }
 
     if packer_bootstrap then
         require('packer').sync()
     end
-
-
 end)

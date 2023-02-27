@@ -1,18 +1,8 @@
-source $HOME/.config/fish/conf.d/abbr.fish
+#!/usr/bin/fish
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-# eval $HOME/opt/anaconda3/bin/conda "shell.fish" "hook" $argv | source
-# <<< conda initialize <<<
-
-export PATH="$HOME/bin:$PATH"
-export PATH="/usr/local/anaconda3/bin:$PATH"
-set -Ua fish_user_paths $HOME/.cargo/bin
-starship init fish | source
-
-alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
-alias ls='exa -lag --header'
-alias vim='nvim'
+# Kanagawa Fish shell theme
+# A template was taken and modified from Tokyonight:
+# https://github.com/folke/tokyonight.nvim/blob/main/extras/fish_tokyonight_night.fish
 set -l foreground DCD7BA
 set -l selection 2D4F67
 set -l comment 727169
