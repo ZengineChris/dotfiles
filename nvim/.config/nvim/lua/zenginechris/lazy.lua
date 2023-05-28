@@ -18,11 +18,13 @@ require("lazy").setup({
     "folke/which-key.nvim",
     { "folke/neoconf.nvim", cmd = "Neoconf" },
     "folke/neodev.nvim",
-    {"rebelot/kanagawa.nvim",
-      config = function()
-            vim.cmd('colorscheme kanagawa')
+    {"rebelot/kanagawa.nvim" },
+
+    {'shaunsingh/nord.nvim',
+        config = function()
+            vim.cmd('colorscheme nord')
         end
-    },
+        },
     {"nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
     "nvim-treesitter/playground",
     "tpope/vim-fugitive",
