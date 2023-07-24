@@ -1,13 +1,13 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  vim.fn.system({
-    "git",
-    "clone",
-    "--filter=blob:none",
-    "https://github.com/folke/lazy.nvim.git",
-    "--branch=stable", -- latest stable release
-    lazypath,
-  })
+    vim.fn.system({
+        "git",
+        "clone",
+        "--filter=blob:none",
+        "https://github.com/folke/lazy.nvim.git",
+        "--branch=stable", -- latest stable release
+        lazypath,
+    })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -16,16 +16,10 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     "nvim-lua/plenary.nvim",
     "folke/which-key.nvim",
-    { "folke/neoconf.nvim", cmd = "Neoconf" },
+    { "folke/neoconf.nvim",              cmd = "Neoconf" },
     "folke/neodev.nvim",
-    {"rebelot/kanagawa.nvim" },
-
-    {'shaunsingh/nord.nvim',
-        config = function()
-            vim.cmd('colorscheme nord')
-        end
-        },
-    {"nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
+    { "catppuccin/nvim",                 name = "catppuccin", priority = 1000 },
+    { "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
     "nvim-treesitter/playground",
     "tpope/vim-fugitive",
     "mbbill/undotree",
@@ -38,7 +32,7 @@ require("lazy").setup({
     {
         'VonHeikemen/lsp-zero.nvim',
         dependencies = {
-         -- LSP Support
+            -- LSP Support
             { 'neovim/nvim-lspconfig' },
             { 'williamboman/mason.nvim' },
             { 'williamboman/mason-lspconfig.nvim' },

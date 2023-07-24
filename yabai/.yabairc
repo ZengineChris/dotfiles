@@ -25,6 +25,7 @@ yabai -m space 7 --label social
 yabai -m space 8 --label games
 
 # window rules
+yabai -m rule --add app="^Alacritty$" space=code
 yabai -m rule --add app="^Mail$" space=mail
 yabai -m rule --add app="^Safari$" space=web
 yabai -m rule --add app="^Notes$" space=notes

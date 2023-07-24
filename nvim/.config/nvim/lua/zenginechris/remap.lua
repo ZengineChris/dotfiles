@@ -10,35 +10,6 @@ function map(mode, lhs, rhs, opts)
     vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
 
--- Colemak: hjkl>mnei, i>t
---map("n", "m", "h")          -- move Left
---map("n", "n", "gj")         -- move Down (g to allow move within wrapped lines)
---map("n", "e", "gk")         -- move Up (g to allow move within wrapped lines)
---map("n", "i", "l")          -- move Right
---map("n", "t", "i")          -- (t)ype           replaces (i)nsert
---map("n", "T", "I")          -- (T)ype at bol    replaces (I)nsert
---map("n", "E", "e")          -- end of word      replaces (e)nd
---map("n", "h", "n")          -- next match       replaces (n)ext
---map("n", "k", "N")          -- previous match   replaces (N) prev
-
--- Visual Colemak
---map("v", "m", "h")          -- move Left
---map("v", "n", "gj")         -- move Down (g to allow move within wrapped lines)
---map("v", "e", "gk")         -- move Up (g to allow move within wrapped lines)
---map("v", "I", "l")          -- move Right - shifted to fix [v]isual[i]n[...]
-
--- Enter commands without pressing shift
---map("n", ";", ":")
---map("n", ":", ";")
-
--- Quickly return to normal_mode
---map("i", ",n", "<Esc>")
-
--- Ctrl+up/down to page up/down
---map("n", "<C-n>", "<C-f>M")  -- page down
---map("n", "<C-e>", "<C-b>M")  -- page up
-
-
 vim.keymap.set("n","e","k") 
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex)
 

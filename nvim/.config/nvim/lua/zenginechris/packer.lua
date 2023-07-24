@@ -30,14 +30,19 @@ return require('packer').startup(function(use)
     --    end
     --})
 
-    use({
-        "rebelot/kanagawa.nvim",
-        as = 'kanagawa',
+   -- use({
+     --   "rebelot/kanagawa.nvim",
+       -- as = 'kanagawa',
+       -- config = function()
+         --   vim.cmd('colorscheme kanagawa')
+       -- end
+   -- })
+    use({'arcticicestudio/nord-vim',
+        as = 'nord',
         config = function()
-            vim.cmd('colorscheme kanagawa')
+            vim.cmd('colorscheme nord')
         end
-    })
-
+        })
     use({ 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' })
     use('nvim-treesitter/playground')
     use('theprimeagen/harpoon')
