@@ -16,9 +16,9 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     "nvim-lua/plenary.nvim",
     "folke/which-key.nvim",
+    "rebelot/kanagawa.nvim",
     { "folke/neoconf.nvim",              cmd = "Neoconf" },
     "folke/neodev.nvim",
-    { "catppuccin/nvim",                 name = "catppuccin", priority = 1000 },
     { "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
     "nvim-treesitter/playground",
     "tpope/vim-fugitive",
