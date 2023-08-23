@@ -1,9 +1,6 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 # Import additional configuration files
-#
-# Imports are loaded in order, skipping all missing files, with the importing
-# file being loaded last. If a field is already present in a previous import, it
 # will be replaced.
 #
 # All imports must either be absolute paths starting with `/`, or paths relative
@@ -969,7 +966,8 @@ font:
   #highlight_damage: false
 enable_scroll: true
 
-
+window:
+  opacity: 0.89
 
 import:
   # uncomment the flavour you want below:
