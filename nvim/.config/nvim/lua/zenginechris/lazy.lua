@@ -17,6 +17,12 @@ require("lazy").setup({
     "nvim-lua/plenary.nvim",
     "folke/which-key.nvim",
     "rebelot/kanagawa.nvim",
+    {
+        "folke/tokyonight.nvim",
+        lazy = false,
+        priority = 1000,
+        opts = {},
+    },
     { "folke/neoconf.nvim",              cmd = "Neoconf" },
     "folke/neodev.nvim",
     { "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
