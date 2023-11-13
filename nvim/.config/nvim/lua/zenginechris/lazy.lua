@@ -23,9 +23,10 @@ require("lazy").setup({
         priority = 1000,
         opts = {},
     },
-    { "folke/neoconf.nvim",              cmd = "Neoconf" },
+    { "catppuccin/nvim",    name = "catppuccin", priority = 1000 },
+    { "folke/neoconf.nvim", cmd = "Neoconf" },
     "folke/neodev.nvim",
-    { "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter",             cmd = "TSUpdate" },
     "nvim-treesitter/playground",
     "tpope/vim-fugitive",
     "mbbill/undotree",
@@ -56,10 +57,11 @@ require("lazy").setup({
             { 'rafamadriz/friendly-snippets' },
         }
     },
-    "lukas-reineke/indent-blankline.nvim",
     "theprimeagen/harpoon",
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'kyazdani42/nvim-web-devicons' }
-    }
+    },
+    "vrischmann/tree-sitter-templ",
+    { dir = "~/github.com/zengineChris/analyst_nvim" }
 })

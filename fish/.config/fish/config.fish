@@ -16,7 +16,7 @@ set -gx  XDG_CONFIG_HOME "$HOME/k9s"
 source $HOME/.config/fish/themes/tokio_moon.fish
 
 alias sail='[ -f sail ] && bash sail || bash vendor/bin/sail'
-alias ls='exa -lag --header'
+alias ls='eza -lag --header'
 alias vim='nvim'
 set -gx VOLTA_HOME "$HOME/.volta"
 set -gx PATH "$VOLTA_HOME/bin" $PATH
