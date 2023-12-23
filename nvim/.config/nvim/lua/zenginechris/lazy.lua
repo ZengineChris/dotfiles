@@ -63,5 +63,6 @@ require("lazy").setup({
         dependencies = { 'kyazdani42/nvim-web-devicons' }
     },
     "vrischmann/tree-sitter-templ",
-    { dir = "~/github.com/zengineChris/analyst_nvim" }
+    { dir = "~/github.com/zengineChris/analyst_nvim" },
+    "TabbyML/vim-tabby",
 })
