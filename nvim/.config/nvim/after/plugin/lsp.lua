@@ -6,6 +6,7 @@ lsp.ensure_installed({
     'tsserver',
     'eslint',
     'rust_analyzer',
+    'gopls'
 })
 
 local cmp = require('cmp')
@@ -66,9 +67,7 @@ if not lsp_configurations.starlark_lsp then
         }
     }
 end
-
 require('lspconfig').starlark_lsp.setup({})
-
 
 lsp.on_attach(function(client, bufnr)
     local opts = { buffer = bufnr, remap = false }
