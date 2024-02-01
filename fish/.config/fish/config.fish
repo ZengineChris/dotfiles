@@ -21,6 +21,7 @@ set -gx PATH "$VOLTA_HOME/bin" $PATH
 echo "Config file sourced successfully"
 
 
+
 alias ls='eza -lag'
 alias tree='eza -T --icons'
 

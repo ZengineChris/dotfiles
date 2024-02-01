@@ -1,0 +1,36 @@
+- hosts: dev
+  gather_facts: false
+  vars:
+    formula:
+      - wget
+      - git
+      - tmux
+      - neovim
+      - fzf
+      - doctl
+      - eza
+      - podman
+    applications:
+      - kitty
+  tasks:
+    - name: Check for installed apps(casks)
+      shell: brew info --cask {{ item }}
+      register: installed_applications
+      loop: "{{ applications }}"
+      ignore_errors: true
+    
+    - name: Install apps with brew -cask
+      shell: brew install --cask {{ item }}
+      loop: "{{ applications }}"
+      when: item not in installed_applications.results|map(attribute='stdout')
+    
+    - name: Check for installed apps(formula)
+      shell: brew info --formula {{ item }}
+      register: installed_formula
+      loop: "{{ formula }}"
+      ignore_errors: true
+    
+    - name: Install apps with brew -formula
+      shell: brew install --formula {{ item }}
+      loop: "{{ formula }}"
+      when: item not in installed_formula.results|map(attribute='stdout')  

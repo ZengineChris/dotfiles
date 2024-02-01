@@ -24,3 +24,11 @@ brew install exa
 brew install --cask anaconda
 brew install go
 ```
+
+
+### TODO 
+- [ ] Folder Setup for mac and Linux
+- [ ] Add settings for kitty 
+- [ ] Switch to zsh and omyzsh 
+- [ ] make some ansible script to install all the things 
+- [ ] rework on the nvim config 

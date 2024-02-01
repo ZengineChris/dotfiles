@@ -2,6 +2,7 @@ vim.keymap.set("n", "<leader>gs", vim.cmd.Git)
 
 local ZengineChris_Fugitive = vim.api.nvim_create_augroup("ZengineChris_Fugitive", {})
 
+
 local autocmd = vim.api.nvim_create_autocmd
 autocmd("BufWinEnter", {
     group = ZengineChris_Fugitive,

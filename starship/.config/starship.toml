@@ -1,6 +1,6 @@
 palette = "catppuccin_macchiato"
 # format = '$all$directory$character'
-add_newline = false
+add_newline = true
 # A minimal left prompt
 format = """$directory$character"""
 # move the rest of the prompt to the right
@@ -14,6 +14,7 @@ truncation_symbol = "…/"
 
 [directory.substitutions]
 '~/github.com/zengineDev' = 'zengine'
+'~/github.com/zengineChris' = 'chris'
 "Documents" = "󰈙 "
 "Downloads" = " "
 "Music" = " "
