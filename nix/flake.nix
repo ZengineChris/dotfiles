@@ -22,6 +22,7 @@
           jq
           bat
           fzf
+          eza
           # ... add your tools here
 
         ];
