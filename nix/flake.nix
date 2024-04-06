@@ -38,8 +38,8 @@
           k3d
           k9s
           trivy
-          helm
           kustomize
+          kubernetes-helm
           kubectl
           natscli
           nats-server
