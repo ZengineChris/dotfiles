@@ -30,7 +30,7 @@
 
 
           # Dev tools 
-          devenv.packages.aarch64-darwin.devenv
+          #devenv.packages.aarch64-darwin.devenv
 
 
           # infrastructur
