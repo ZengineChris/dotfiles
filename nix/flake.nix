@@ -25,6 +25,16 @@
           eza
           # ... add your tools here
 
+
+          # container 
+          podman
+
+
+          # languages 
+          go
+          node
+          deno
+
         ];
       };
   };
