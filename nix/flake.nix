@@ -23,16 +23,31 @@
           bat
           fzf
           eza
+          gnupg
+          ripgrep
+          neofetch
           # ... add your tools here
 
 
-          # container 
+          # Dev tools 
+          devenv.packages.aarch64-darwin.devenv
+
+
+          # infrastructur
           podman
+          k3d
+          k9s
+          trivy
+          helm
+          kustomize
+          kubectl
+          natscli
+          nats-server
 
 
           # languages 
           go
-          node
+          nodejs
           deno
 
         ];
