@@ -58,6 +58,7 @@
           deno
           lua
           llvm
+          python3
 
         ];
       };
