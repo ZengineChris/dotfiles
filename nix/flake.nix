@@ -26,11 +26,18 @@
           gnupg
           ripgrep
           neofetch
+          fd
+          uutils-coreutils
+          stow
           # ... add your tools here
 
 
           # Dev tools 
           #devenv.packages.aarch64-darwin.devenv
+          neovim
+          starship
+          kitty
+          zsh
 
 
           # infrastructur
@@ -49,6 +56,8 @@
           go
           nodejs
           deno
+          lua
+          llvm
 
         ];
       };
