@@ -21,6 +21,7 @@
           curl
           jq
           bat
+          fzf
           # ... add your tools here
 
         ];
