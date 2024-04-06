@@ -5,7 +5,7 @@
     devenv.url = "github:cachix/devenv/latest";
   };
 
-  outputs = { self, nixpkgs, unstable }: {
+  outputs = { self, nixpkgs, unstable, devenv }: {
     packages."aarch64-darwin".default =
       let
         pkgs = nixpkgs.legacyPackages."aarch64-darwin";
