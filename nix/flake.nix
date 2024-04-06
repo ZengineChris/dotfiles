@@ -38,6 +38,9 @@
           starship
           kitty
           zsh
+          oh-my-zsh
+          zsh-syntax-highlighting
+          zsh-completions
 
 
           # infrastructur
