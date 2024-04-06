@@ -1,11 +1,11 @@
 function ColorMyPencils(color) 
-	--color = color or "tokyonight"
+    --color = color or "tokyonight"
     color = color or "catppuccin"
 	vim.cmd.colorscheme(color)
 
 
-	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
-	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
+--	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+--	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 end
 
@@ -50,7 +50,7 @@ require("tokyonight").setup({
 
 
 require("catppuccin").setup({
-    flavour = "mocha", -- latte, frappe, macchiato, mocha
+    flavour = "macchiato", -- latte, frappe, macchiato, mocha
     background = { -- :h background
         light = "latte",
         dark = "mocha",
@@ -69,16 +69,6 @@ require("catppuccin").setup({
     styles = { -- Handles the styles of general hi groups (see `:h highlight-args`):
         comments = { "italic" }, -- Change the style of comments
         conditionals = { "italic" },
-        loops = {},
-        functions = {},
-        keywords = {},
-        strings = {},
-        variables = {},
-        numbers = {},
-        booleans = {},
-        properties = {},
-        types = {},
-        operators = {},
     },
     color_overrides = {},
     custom_highlights = {},

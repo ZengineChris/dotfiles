@@ -29,7 +29,7 @@ lsp.setup_nvim_cmp({
 })
 
 lsp.set_preferences({
-    suggest_lsp_servers = false,
+    suggest_lsp_servers = true,
     sign_icons = {
         error = 'E',
         warn = 'W',
@@ -90,6 +90,7 @@ lsp.on_attach(function(client, bufnr)
     vim.keymap.set("i", "<C-h>", vim.lsp.buf.signature_help, opts)
 end)
 
+
 lsp.setup()
 
 
@@ -100,7 +101,9 @@ vim.cmd [[
   augroup END
 ]]
 
-
+require("lspconfig").sqlls.setup({
+    
+})
 
 require("lspconfig").tailwindcss.setup({
     filetypes = {

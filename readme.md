@@ -1,5 +1,23 @@
 # Dotfiles
 
+The new appoach is to install and manage all the os tools with nix. 
+
+
+First of all install the nix packge manager.
+
+
+```shell
+sh <(curl -L https://nixos.org/nix/install)
+```
+
+Install the profile 
+
+```shell
+cd nix && nix profile install .
+```
+
+
+
 ```shell
 $ echo /opt/homebrew/bin/fish | sudo tee -a /etc/shells
 $ chsh -s /opt/homebrew/bin/fish
