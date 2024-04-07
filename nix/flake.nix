@@ -44,7 +44,8 @@
           oh-my-zsh
           zsh-syntax-highlighting
           zsh-completions
-
+          go-task
+          golangci-lint
 
           # infrastructur
           podman
@@ -65,7 +66,6 @@
           lua
           llvm
           python3
-          golangci-lint
 
         ];
       };
