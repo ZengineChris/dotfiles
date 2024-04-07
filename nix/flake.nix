@@ -1,11 +1,14 @@
 {
+  description = "Nix config";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
     unstable.url = "nixpkgs/nixos-unstable";
-    devenv.url = "github:cachix/devenv/latest";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, unstable, devenv }: {
+  outputs = { self, nixpkgs, unstable }: {
     packages."aarch64-darwin".default =
       let
         pkgs = nixpkgs.legacyPackages."aarch64-darwin";
@@ -62,6 +65,7 @@
           lua
           llvm
           python3
+          golangci-lint
 
         ];
       };
