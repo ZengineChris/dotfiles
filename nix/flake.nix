@@ -8,7 +8,7 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, unstable }: {
+  outputs = { self, nixpkgs, unstable, ... }: {
     packages."aarch64-darwin".default =
       let
         pkgs = nixpkgs.legacyPackages."aarch64-darwin";
