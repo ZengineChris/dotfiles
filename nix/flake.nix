@@ -72,7 +72,6 @@
           # languages 
           go
           nodejs
-          deno
           lua
           llvm
           python3

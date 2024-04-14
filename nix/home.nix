@@ -3,6 +3,7 @@
 
   home.packages = [
     pkgs.ocaml
+    pkgs.deno
 
   ];
 
