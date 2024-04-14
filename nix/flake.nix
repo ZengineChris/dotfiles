@@ -10,18 +10,15 @@
   };
 
 
-  outputs = inputs@{ nixpkgs, home-manager, darwin, ... }: {
-    darwinConfigurations."christian" = darwin.lib.darwinSystem {
-      # you can have multiple darwinConfigurations per flake, one per hostname
-
-      system = "aarch64-darwin"; # "x86_64-darwin" if you're using a pre M1 mac
-      modules = [ ./home.nix ]; # will be important later
+  outputs = { nixpkgs, home-manager, ... }: {
+    homeConfigurations = {
+      "christian" = home-manager.lib.homeManagerConfiguration {
+        # darwin is the macOS kernel and aarch64 means ARM, i.e. apple silicon
+        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+        modules = [ ./home.nix ];
+      };
     };
-
-
-
-
-
   };
+
 
 }
