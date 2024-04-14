@@ -8,10 +8,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, unstable, ... }: {
+  outputs = { self, nixpkgs, unstable, home-manager, ... }: {
 
     homeConfigurations = {
-      "zengine.chris" = inputs.home-manager.lib.homeManagerConfiguration {
+      "zengine.chris" = home-manager.lib.homeManagerConfiguration {
         system = "aarch_64-darwin";
         homeDirectory = "/Users/christian";
         username = "zengine.chris";
