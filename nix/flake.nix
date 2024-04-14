@@ -31,4 +31,11 @@
   };
 
 
+
+  packages."aarch64-darwin".default = pkgs: {
+    # Define your default set of packages for the aarch64-darwin system here
+    neovim = pkgs.neovim;
+    tmux = pkgs.tmux;
+    # Add more packages as needed
+  };
 }
