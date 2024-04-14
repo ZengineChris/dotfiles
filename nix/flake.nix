@@ -12,7 +12,7 @@
 
     homeConfigurations = {
       "zengine.chris" = home-manager.lib.homeManagerConfiguration {
-        system = "aarch_64-darwin";
+        system = "aarch64-darwin";
         homeDirectory = "/Users/christian";
         username = "zengine.chris";
         configuration.imports = [ ./home.nix ];
