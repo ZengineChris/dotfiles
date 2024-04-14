@@ -11,23 +11,17 @@
 
 
   outputs = inputs@{ nixpkgs, home-manager, darwin, ... }: {
-    darwinConfigurations = {
-      "christian" = darwin.lib.darwinSystem {
-        system = "aarch64-darwin";
-        modules = [
-          # ./configuration.nix
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.christian = import ./home.nix;
+    darwinConfigurations."christian" = darwin.lib.darwinSystem {
+      # you can have multiple darwinConfigurations per flake, one per hostname
 
-            # Optionally, use home-manager.extraSpecialArgs to pass
-            # arguments to home.nix
-          }
-        ];
-      };
+      system = "aarch64-darwin"; # "x86_64-darwin" if you're using a pre M1 mac
+      modules = [ ./home.nix ]; # will be important later
     };
+
+
+
+
+
   };
 
 }
