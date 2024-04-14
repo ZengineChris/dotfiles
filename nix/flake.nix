@@ -12,7 +12,7 @@
 
   outputs = inputs@{ nixpkgs, home-manager, darwin, ... }: {
     darwinConfigurations = {
-      hostname = darwin.lib.darwinSystem {
+      "christian" = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
         modules = [
           # ./configuration.nix
@@ -28,17 +28,6 @@
         ];
       };
     };
-
-
-
-    packages."aarch64-darwin".default = pkgs: {
-      # Define your default set of packages for the aarch64-darwin system here
-      neovim = pkgs.neovim;
-      tmux = pkgs.tmux;
-      # Add more packages as needed
-    };
   };
-
-
 
 }
