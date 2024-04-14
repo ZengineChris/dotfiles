@@ -28,6 +28,21 @@
         ];
       };
     };
+
+
+    homeConfigurations."christian" = home-manager.lib.homeManagerConfiguration {
+      activationPackage = pkgs.all-in-one;
+      configuration = ./home.nix;
+    };
+
+
+    packages."aarch64-darwin".default = pkgs: {
+      # Define default packages for the Mac M1 system
+      neovim = pkgs.neovim;
+      tmux = pkgs.tmux;
+      # Add more packages as needed
+    };
+
   };
 
 }

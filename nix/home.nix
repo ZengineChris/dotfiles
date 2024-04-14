@@ -7,17 +7,8 @@
 
   home.packages = with pkgs; [
     deno
-
-
-
-
     hugo
-
     btop
-
-
-
-
 
     git
     tmux
@@ -66,6 +57,7 @@
     lua
     llvm
     python3
+    ocaml
 
   ];
 
