@@ -11,10 +11,10 @@
   outputs = { self, nixpkgs, unstable, home-manager, ... }: {
 
     homeConfigurations = {
-      "zengine.chris" = home-manager.lib.homeManagerConfiguration {
+      "christian" = home-manager.lib.homeManagerConfiguration {
         system = "aarch64-darwin";
         homeDirectory = "/Users/christian";
-        username = "zengine.chris";
+        username = "christian";
         configuration.imports = [ ./home.nix ];
       };
     };
