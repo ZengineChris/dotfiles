@@ -15,7 +15,7 @@
         system = "aarch64-darwin";
         homeDirectory = "/Users/christian";
         username = "christian";
-        configuration.imports = [ ./home.nix ];
+        modules = [ ./home.nix ];
       };
     };
 
