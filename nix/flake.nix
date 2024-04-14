@@ -2,24 +2,74 @@
   description = "Nix config";
 
   inputs = {
-
-    nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:NixOS/nixpkgs";
+    unstable.url = "nixpkgs/nixos-unstable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
+  outputs = { self, nixpkgs, unstable, ... }: {
+    packages."aarch64-darwin".default =
+      let
+        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
+        unstablePkgs = unstable.legacyPackages."aarch64-darwin";
+      in
+      pkgs.buildEnv {
+        name = "dev-env";
+        paths = with pkgs; [
+          # general tools
+          git
+          tmux
+          wget
+          curl
+          jq
+          bat
+          fzf
+          eza
+          gnupg
+          ripgrep
+          neofetch
+          fd
+          uutils-coreutils
+          stow
+          # ... add your tools here
 
-  outputs = { nixpkgs, home-manager, ... }: {
-    homeConfigurations = {
-      "christian" = home-manager.lib.homeManagerConfiguration {
-        # darwin is the macOS kernel and aarch64 means ARM, i.e. apple silicon
-        pkgs = nixpkgs.legacyPackages.aarch64-darwin;
-        modules = [ ./home.nix ];
+
+          # Dev tools 
+          #devenv.packages.aarch64-darwin.devenv
+          neovim
+          starship
+          kitty
+          zsh
+          oh-my-zsh
+          zsh-syntax-highlighting
+          zsh-completions
+          go-task
+
+          golangci-lint
+
+          # infrastructur
+          podman
+          k3d
+          k9s
+          trivy
+          kustomize
+          kubernetes-helm
+          kubectl
+          natscli
+          nats-server
+
+
+          # languages 
+          go
+          nodejs
+          deno
+          lua
+          llvm
+          python3
+
+        ];
       };
-    };
   };
-
 
 }
