@@ -2,83 +2,33 @@
   description = "Nix config";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs";
-    unstable.url = "nixpkgs/nixos-unstable";
-    home-manager = {
-      url = "github:nix-community/home-manager/release-23.11";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    darwin.url = "github:lnl7/nix-darwin";
+    darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, unstable, home-manager, ... }: {
-    homeConfigurations = {
-      "christian" = home-manager.lib.homeManagerConfiguration {
+
+  outputs = inputs@{ nixpkgs, home-manager, darwin, ... }: {
+    darwinConfigurations = {
+      hostname = darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        configuration = [
-            ./home.nix
+        modules = [
+          # ./configuration.nix
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.christian = import ./home.nix;
+
+            # Optionally, use home-manager.extraSpecialArgs to pass
+            # arguments to home.nix
+          }
         ];
       };
     };
-
-    packages."aarch64-darwin".default =
-      let
-        pkgs = nixpkgs.legacyPackages."aarch64-darwin";
-        unstablePkgs = unstable.legacyPackages."aarch64-darwin";
-      in
-      pkgs.buildEnv {
-        name = "dev-env";
-        paths = with pkgs; [
-          # general tools
-          git
-          tmux
-          wget
-          curl
-          jq
-          bat
-          fzf
-          eza
-          gnupg
-          ripgrep
-          neofetch
-          fd
-          uutils-coreutils
-          stow
-          # ... add your tools here
-
-
-          # Dev tools 
-          #devenv.packages.aarch64-darwin.devenv
-          neovim
-          starship
-          kitty
-          zsh
-          oh-my-zsh
-          zsh-syntax-highlighting
-          zsh-completions
-          go-task
-          golangci-lint
-
-          # infrastructur
-          podman
-          k3d
-          k9s
-          trivy
-          kustomize
-          kubernetes-helm
-          kubectl
-          natscli
-          nats-server
-
-
-          # languages 
-          go
-          nodejs
-          lua
-          llvm
-          python3
-
-        ];
-      };
   };
+
 
 }

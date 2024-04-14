@@ -14,6 +14,59 @@
     hugo
 
     btop
+
+
+
+
+
+    git
+    tmux
+    wget
+    curl
+    jq
+    bat
+    fzf
+    eza
+    gnupg
+    ripgrep
+    neofetch
+    fd
+    uutils-coreutils
+    stow
+    # ... add your tools here
+
+
+    # Dev tools 
+    #devenv.packages.aarch64-darwin.devenv
+    neovim
+    starship
+    kitty
+    zsh
+    oh-my-zsh
+    zsh-syntax-highlighting
+    zsh-completions
+    go-task
+    golangci-lint
+
+    # infrastructur
+    podman
+    k3d
+    k9s
+    trivy
+    kustomize
+    kubernetes-helm
+    kubectl
+    natscli
+    nats-server
+
+
+    # languages 
+    go
+    nodejs
+    lua
+    llvm
+    python3
+
   ];
 
 
