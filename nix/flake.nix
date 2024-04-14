@@ -9,6 +9,16 @@
   };
 
   outputs = { self, nixpkgs, unstable, ... }: {
+
+    homeConfigurations = {
+      "zengine.chris" = inputs.home-manager.lib.homeManagerConfiguration {
+        system = "aarch_64-darwin";
+        homeDirectory = "/Users/christian";
+        username = "zengine.chris";
+        configuration.imports = [ ./home.nix ];
+      };
+    };
+
     packages."aarch64-darwin".default =
       let
         pkgs = nixpkgs.legacyPackages."aarch64-darwin";
