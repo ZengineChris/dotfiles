@@ -41,6 +41,8 @@
       hugo
 
       # infrastructur
+      qemu
+      docker
       podman
       k3d
       k9s
