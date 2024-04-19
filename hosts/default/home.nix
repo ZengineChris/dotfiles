@@ -55,6 +55,7 @@
       nats-server
       timoni
       cue
+      doctl
 
 
       # languages 
