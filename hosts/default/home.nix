@@ -69,7 +69,7 @@
     ];
   };
 
-  xdg.configFile."nvim".source = ./../../nvim/.config/nvim;
+ # xdg.configFile."nvim".source = ./../../nvim/.config/nvim;
 
   imports = [
     ./../../modules/home-manager/tools/git.nix

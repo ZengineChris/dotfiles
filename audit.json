@@ -31,6 +31,16 @@
             "date": 1713132127422,
             "name": "/Users/christian/.tabby-client/agent/logs/20240415.0.log",
             "hash": "d202e9f49a7a232543b72e27227e4865"
+        },
+        {
+            "date": 1713340378941,
+            "name": "/Users/christian/.tabby-client/agent/logs/20240417.0.log",
+            "hash": "71b4fd8e4d4952adabb495dc1914eee9"
+        },
+        {
+            "date": 1713509140629,
+            "name": "/Users/christian/.tabby-client/agent/logs/20240419.0.log",
+            "hash": "ffdb6f06a1e88218118befb61f54c56f"
         }
     ]
 }
