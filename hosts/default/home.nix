@@ -32,6 +32,7 @@
       neovim
       starship
       kitty
+      wezterm
       zsh
       oh-my-zsh
       zsh-syntax-highlighting

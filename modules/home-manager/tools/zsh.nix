@@ -13,13 +13,13 @@
     };
     oh-my-zsh = {
       enable = true;
-      theme = "robbyrussell";
+      theme = "";
       plugins = [
         "git"
         "npm"
         "history"
         "node"
-        "go"
+        "golang"
         "rust"
         "deno"
       ];
