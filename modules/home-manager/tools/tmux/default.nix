@@ -7,7 +7,6 @@
     escapeTime = 0;
     extraConfig = ''
       set-option -g status-position top
-      set-option -g mouse on
       set-window-option -g mode-keys vi
       set -g status-keys vi
     '';

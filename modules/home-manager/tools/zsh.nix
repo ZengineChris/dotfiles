@@ -11,6 +11,9 @@
       tree = "eza -T --icons";
       update = "sudo nixos-rebuild switch";
     };
+    initExtra = ''
+        export PATH="$HOME/go/bin:$PATH"
+    '';
     oh-my-zsh = {
       enable = true;
       theme = "";
