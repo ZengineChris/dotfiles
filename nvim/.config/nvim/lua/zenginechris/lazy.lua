@@ -11,27 +11,23 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
-
-
 require("lazy").setup({
     "nvim-lua/plenary.nvim",
     "folke/which-key.nvim",
-    "rebelot/kanagawa.nvim",
-    {
-        "folke/tokyonight.nvim",
-        lazy = false,
-        priority = 1000,
-        opts = {},
-    },
     { "catppuccin/nvim",    name = "catppuccin", priority = 1000 },
     { "folke/neoconf.nvim", cmd = "Neoconf" },
     "folke/neodev.nvim",
-    { "nvim-treesitter/nvim-treesitter",             cmd = "TSUpdate" },
+    { "nvim-treesitter/nvim-treesitter", cmd = "TSUpdate" },
     "nvim-treesitter/playground",
     "tpope/vim-fugitive",
     "mbbill/undotree",
-    "folke/zen-mode.nvim",
     "nvim-telescope/telescope.nvim",
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        -- Optional dependencies
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
     {
         'nvim-tree/nvim-tree.lua',
         tag = 'nightly' -- optional, updated every week. (see issue #1193)
@@ -63,6 +59,42 @@ require("lazy").setup({
         dependencies = { 'kyazdani42/nvim-web-devicons' }
     },
     "vrischmann/tree-sitter-templ",
-    { dir = "~/github.com/zengineChris/analyst_nvim" },
-    "TabbyML/vim-tabby",
+    -- { dir = "~/github.com/zengineChris/analyst_nvim" },
+    {
+        "folke/trouble.nvim",
+        branch = "dev", -- IMPORTANT!
+        keys = {
+            {
+                "<leader>xx",
+                "<cmd>Trouble diagnostics toggle<cr>",
+                desc = "Diagnostics (Trouble)",
+            },
+            {
+                "<leader>xX",
+                "<cmd>Trouble diagnostics toggle filter.buf=0<cr>",
+                desc = "Buffer Diagnostics (Trouble)",
+            },
+            {
+                "<leader>cs",
+                "<cmd>Trouble symbols toggle focus=false<cr>",
+                desc = "Symbols (Trouble)",
+            },
+            {
+                "<leader>cl",
+                "<cmd>Trouble lsp toggle focus=false win.position=right<cr>",
+                desc = "LSP Definitions / references / ... (Trouble)",
+            },
+            {
+                "<leader>xL",
+                "<cmd>Trouble loclist toggle<cr>",
+                desc = "Location List (Trouble)",
+            },
+            {
+                "<leader>xQ",
+                "<cmd>Trouble qflist toggle<cr>",
+                desc = "Quickfix List (Trouble)",
+            },
+        },
+        opts = {}, -- for default options, refer to the configuration section for custom setup.
+    }
 })

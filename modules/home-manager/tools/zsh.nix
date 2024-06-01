@@ -9,7 +9,8 @@
       v = "nvim";
       vim = "nvim";
       vi = "nvim";
-      ll = "eza -lag";
+      lt = "eza --tree --level=2 --long --icons --git";
+      l = "eza -l --icons --git -a";
       tree = "eza -T --icons";
       update = "sudo nixos-rebuild switch";
     };
@@ -39,6 +40,10 @@
 
 
         eval "$(fzf --zsh)"
+        eval "$(zoxide init zsh)"
+
+
+        cx() { cd "$@" && l; }
 
     '';
     oh-my-zsh = {

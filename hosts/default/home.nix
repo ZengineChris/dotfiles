@@ -33,6 +33,8 @@
       starship
       kitty
       wezterm
+      yazi
+      zoxide
       zsh
       oh-my-zsh
       zsh-syntax-highlighting
