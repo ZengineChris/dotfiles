@@ -29,6 +29,11 @@
       btop
       # ... add your tools here
 
+      # hypr
+
+       hyprpaper
+       hypridle
+       hyprlock
 
       # Applications
       _1password-gui
@@ -97,6 +102,8 @@
     ./../../modules/home-manager/tools/zsh.nix
     ./../../modules/home-manager/tools/tmux/default.nix
     ./../../modules/home-manager/tools/starship/default.nix
+    ./../../modules/home-manager/tools/hypr/default.nix
+    ./../../modules/home-manager/hypr/waybar.nix
     ./../../modules/home-manager/terminals/default.nix
   ];
 
