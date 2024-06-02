@@ -1,3 +1,13 @@
+-- Make line numbers default
+vim.wo.number = true
+vim.o.relativenumber = true
+
+-- Set colorscheme
+--vim.cmd [[colorscheme onedark]]
+-- vim.cmd.colorscheme "catppuccin"
+
+
+
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
@@ -5,7 +15,6 @@ vim.opt.guicursor = ""
 
 
 vim.opt.nu = true
-vim.opt.relativenumber = true
 
 vim.opt.errorbells = false
 

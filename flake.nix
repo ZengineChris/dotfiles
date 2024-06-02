@@ -1,5 +1,5 @@
 {
-  description = "Nix config";
+  description = "Home Manager";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
@@ -12,10 +12,16 @@
 
   outputs = { nixpkgs, home-manager, ... }: {
     homeConfigurations = {
-      "christian" = home-manager.lib.homeManagerConfiguration {
+
+    "christian" = home-manager.lib.homeManagerConfiguration {
         # darwin is the macOS kernel and aarch64 means ARM, i.e. apple silicon
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
         modules = [ ./hosts/default/home.nix ];
+      };
+      "chris" = home-manager.lib.homeManagerConfiguration {
+        # darwin is the macOS kernel and aarch64 means ARM, i.e. apple silicon
+	pkgs = nixpkgs.legacyPackages.x86_64-linux;
+        modules = [ ./hosts/nix/home.nix ];
       };
     };
   };
