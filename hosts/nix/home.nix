@@ -28,6 +28,8 @@
       stow
       btop
       # ... add your tools here
+      avahi
+      ffmpeg_7
 
       # hypr
 
@@ -82,7 +84,12 @@
       ocaml
       deno
       zig
-      rustup
+      # rust env
+      clippy
+      rustc
+      cargo
+      rustfmt
+      rust-analyzer
     ];
   };
 
