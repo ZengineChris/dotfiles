@@ -84,6 +84,8 @@
       ocaml
       deno
       zig
+      clang
+      clang-tools
       # rust env
       clippy
       rustc
