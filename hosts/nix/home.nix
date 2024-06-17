@@ -39,11 +39,12 @@
 
       # Applications
       _1password-gui
-      obsidian
+      #obsidian
 
       # Dev tools 
       #devenv.packages.aarch64-darwin.devenv
       neovim
+      devbox
       starship
       kitty
       wezterm
@@ -56,11 +57,14 @@
       go-task
       golangci-lint
       hugo
+      postgresql_16
 
       # infrastructur
       qemu
       docker
       podman
+      podman-compose
+      podman-tui
       doppler
       k3d
       k9s
@@ -92,6 +96,10 @@
       cargo
       rustfmt
       rust-analyzer
+      gleam
+      erlang
+      ruby
+      sqlite
     ];
   };
 
