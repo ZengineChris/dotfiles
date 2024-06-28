@@ -42,6 +42,7 @@
       go-task
       golangci-lint
       hugo
+      lazysql
 
       # infrastructur
       qemu
