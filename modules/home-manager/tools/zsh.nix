@@ -16,6 +16,8 @@
     };
     initExtra = ''
       export PATH="$HOME/go/bin:$PATH"
+      export PATH="$HOME/.rd/bin:$PATH"
+      export PATH="/opt/homebrew/opt/ruby@3.2/bin:$PATH"
 
         bindkey -e
         bindkey '^j' history-search-forward
@@ -41,7 +43,7 @@
 
         eval "$(fzf --zsh)"
         eval "$(zoxide init zsh)"
-
+        eval "$(rbenv init - zsh)"
 
         cx() { cd "$@" && l; }
 
