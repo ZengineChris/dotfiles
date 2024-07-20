@@ -28,7 +28,6 @@
       stats
 
       # Dev tools 
-      #devenv.packages.aarch64-darwin.devenv
       neovim
       starship
       kitty
@@ -43,12 +42,13 @@
       golangci-lint
       hugo
       lazysql
+      direnv
 
       # infrastructur
       qemu
       docker
       podman
-      doppler
+      # doppler
       k3d
       k9s
       trivy
@@ -74,7 +74,7 @@
     ];
   };
 
- # xdg.configFile."nvim".source = ./../../nvim/.config/nvim;
+  # xdg.configFile."nvim".source = ./../../nvim/.config/nvim;
 
   imports = [
     ./../../modules/home-manager/tools/git.nix

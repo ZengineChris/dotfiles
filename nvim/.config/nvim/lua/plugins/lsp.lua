@@ -77,6 +77,15 @@ require('lspconfig').lua_ls.setup {
     },
 }
 
+require('lspconfig').ruby_lsp.setup({
+    on_attach = on_attach,
+    default_config = {
+        filetypes = { 'ruby', 'erb' },
+        name = 'Ruby LSP',
+        cmd = { "bundle", "exec", "ruby-lsp" },
+    }
+})
+
 
 local cmp = require('cmp')
 local cmp_format = lsp_zero.cmp_format()

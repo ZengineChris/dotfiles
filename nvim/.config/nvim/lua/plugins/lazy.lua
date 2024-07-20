@@ -30,8 +30,16 @@ require("lazy").setup({
     { 'neovim/nvim-lspconfig' },
     { 'williamboman/mason.nvim' },
     { 'williamboman/mason-lspconfig.nvim' },
+    {
+        'mfussenegger/nvim-dap',
+    },
+    {
+        'leoluz/nvim-dap-go',
+        ft = "go",
+        dependencies = "mfussenegger/nvim-dap",
+    },
 
-    { "catppuccin/nvim",                  as = "catppuccin" },
+    { "catppuccin/nvim",               as = "catppuccin" },
     {
         'nvim-lualine/lualine.nvim',
         dependencies = { 'kyazdani42/nvim-web-devicons' }
@@ -114,10 +122,10 @@ require("lazy").setup({
 
 
     -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
+    { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     'nvim-telescope/telescope-symbols.nvim',
     -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
-    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make',   cond = vim.fn.executable 'make' == 1 },
+    { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', cond = vim.fn.executable 'make' == 1 },
 
     -- Language specific stuff
     "vrischmann/tree-sitter-templ",

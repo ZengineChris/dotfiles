@@ -2,11 +2,11 @@ require("obsidian").setup({
   workspaces = {
       {
         name = "personal",
-        path = "~/vaults/personal",
+        path = "~/github.com/zengineChris/vaults/personal",
       },
       {
         name = "work",
-        path = "~/vaults/work",
+        path = "~/github.com/zengineChris/vaults/work",
       },
   },
 })

@@ -6,13 +6,12 @@ vim.o.relativenumber = true
 --vim.cmd [[colorscheme onedark]]
 -- vim.cmd.colorscheme "catppuccin"
 
-
-
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
 
 vim.opt.guicursor = ""
 
+vim.opt_local.conceallevel = 2
 
 vim.opt.nu = true
 
