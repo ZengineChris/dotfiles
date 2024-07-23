@@ -48,9 +48,9 @@
 
       # infrastructur
       qemu
+      lima
       docker
       podman
-      doppler
       k3d
       k9s
       trivy
