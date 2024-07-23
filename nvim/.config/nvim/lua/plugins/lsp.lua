@@ -4,7 +4,6 @@ lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
     --
-
     local nmap = function(keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
@@ -85,6 +84,16 @@ require('lspconfig').ruby_lsp.setup({
         cmd = { "bundle", "exec", "ruby-lsp" },
     }
 })
+
+
+require("lspconfig").ruby_lsp.setup {
+    on_attach = on_attach,
+    default_config = {
+        filetypes = { 'ruby' },
+        name = 'this works',
+        cmd = { "bundle", "exec", "ruby-lsp" },
+    }
+}
 
 
 local cmp = require('cmp')

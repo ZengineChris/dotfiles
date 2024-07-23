@@ -21,7 +21,6 @@
       stow
       btop
       # ... add your tools here
-      asdf-vm
       openssl
       libyaml
 
@@ -61,9 +60,6 @@
       nats-server
       timoni
       cue
-      doctl
-      azure-cli
-
 
       # languages 
       go
@@ -76,7 +72,7 @@
       zig
       gleam
       rustup
-
+     # (pkgs.ruby.withPackages (ps: with ps; [ nokogiri pry rails ruby-lsp solargraph ]))
     ];
   };
 
@@ -88,6 +84,7 @@
     ./../../modules/home-manager/tools/tmux/default.nix
     ./../../modules/home-manager/tools/starship/default.nix
     ./../../modules/home-manager/terminals/default.nix
+    ./../../modules/scripts/git.nix
   ];
 
   # This value determines the home Manager release that your
