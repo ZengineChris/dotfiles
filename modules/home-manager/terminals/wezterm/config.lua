@@ -10,7 +10,7 @@ local config = wezterm.config_builder()
 config.color_scheme = 'Catppuccin Mocha'
 config.font_size = 16.0
 config.enable_tab_bar = false
-config.window_background_opacity = 0.95
+config.window_background_opacity = 0.98
 config.window_decorations = "RESIZE"
 config.font = wezterm.font('JetBrains Mono')
 

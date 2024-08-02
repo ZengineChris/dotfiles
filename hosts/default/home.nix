@@ -11,6 +11,8 @@
       curl
       jq
       bat
+      bat-extras.prettybat
+      bat-extras.batdiff
       fzf
       eza
       gnupg
@@ -43,11 +45,14 @@
       hugo
       lazysql
       direnv
+      nixos-anywhere
+      pwgen
 
       # infrastructur
       qemu
-      docker
       podman
+      docker
+      helmfile
       # doppler
       k3d
       k9s
@@ -77,6 +82,7 @@
   # xdg.configFile."nvim".source = ./../../nvim/.config/nvim;
 
   imports = [
+    #./../../pkgs/vf/vfkit/package.nix
     ./../../modules/home-manager/tools/git.nix
     ./../../modules/home-manager/tools/zsh.nix
     ./../../modules/home-manager/tools/tmux/default.nix

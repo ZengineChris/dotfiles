@@ -6,9 +6,7 @@
     pkgs.gum
 
     # commit message helper
-    # I have to start with this name to prevent a collission with the oh my zsh 
-    # git plugin
-    (pkgs.writeShellScriptBin "ggc" /*bash*/ ''
+    (pkgs.writeShellScriptBin "gc" /*bash*/ ''
         TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert" "ci")
         BREAKING=$(gum choose "Breaking change" "Normal change")
         SCOPE=$(gum input --placeholder "scope")
