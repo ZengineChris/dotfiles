@@ -6,7 +6,7 @@
     pkgs.gum
 
     # commit message helper
-    (pkgs.writeShellScriptBin "gc" /*bash*/ ''
+    (pkgs.writeShellScriptBin "ggc" /*bash*/ ''
         TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert" "ci")
         BREAKING=$(gum choose "Breaking change" "Normal change")
         SCOPE=$(gum input --placeholder "scope")

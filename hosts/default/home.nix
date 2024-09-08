@@ -12,7 +12,6 @@
       jq
       bat
       bat-extras.prettybat
-      bat-extras.batdiff
       fzf
       eza
       gnupg
@@ -32,7 +31,6 @@
       # Dev tools 
       neovim
       starship
-      kitty
       wezterm
       yazi
       zoxide
@@ -44,7 +42,6 @@
       golangci-lint
       hugo
       lazysql
-      direnv
       nixos-anywhere
       pwgen
 
@@ -56,6 +53,7 @@
       # doppler
       k3d
       k9s
+      k6
       trivy
       kustomize
       kubernetes-helm
@@ -85,6 +83,7 @@
     #./../../pkgs/vf/vfkit/package.nix
     ./../../modules/home-manager/tools/git.nix
     ./../../modules/home-manager/tools/zsh.nix
+    ./../../modules/home-manager/tools/direnv.nix
     ./../../modules/home-manager/tools/tmux/default.nix
     ./../../modules/home-manager/tools/starship/default.nix
     ./../../modules/home-manager/terminals/default.nix

@@ -14,7 +14,7 @@ lsp_zero.on_attach(function(client, bufnr)
 
 
     nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-    nmap('<leader>ca', vim.lsp.buf.code_action, '[R]e[n]ame')
+    nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
     nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
     nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eference')
     nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
@@ -35,7 +35,11 @@ end)
 --- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guides/integrate-with-mason-nvim.md
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { 'gopls', 'rust_analyzer', 'tsserver' },
+    ensure_installed = {
+        'gopls',
+        'rust_analyzer',
+        -- ruby stuff
+    },
     handlers = {
         -- this first function is the "default handler"
         -- it applies to every language server without a "custom handler"
@@ -89,9 +93,19 @@ require('lspconfig').ruby_lsp.setup({
 require("lspconfig").ruby_lsp.setup {
     on_attach = on_attach,
     default_config = {
-        filetypes = { 'ruby' },
+        filetypes = { 'ruby', 'erb' },
         name = 'this works',
         cmd = { "bundle", "exec", "ruby-lsp" },
+    }
+}
+
+
+require("lspconfig").rubocop.setup {
+    on_attach = on_attach,
+    default_config = {
+        filetypes = { 'ruby', 'erb' },
+        name = 'rubocop',
+        cmd = { "bundle", "exec", "rubocop" },
     }
 }
 

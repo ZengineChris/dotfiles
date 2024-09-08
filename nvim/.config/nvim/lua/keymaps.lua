@@ -42,3 +42,8 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 
 
 vim.keymap.set("n", "<leader>db", "<cmd> DapToggleBreakpoint<CR>")
+vim.keymap.set("n", "<leader>dss", "<cmd> DapContinue<CR>")
+
+--- lua
+vim.g.tabby_keybinding_accept = '<Tab>'
+vim.g.tabby_keybinding_trigger_or_dismiss = '<C-\\>'
