@@ -47,7 +47,6 @@
       azure-cli
 
       # infrastructur
-      qemu
       lima
       docker
       podman
@@ -69,7 +68,6 @@
       llvm
       python3
       ocaml
-      deno
       zig
       gleam
       rustup
