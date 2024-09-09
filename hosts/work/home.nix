@@ -1,5 +1,4 @@
 { config, pkgs, ... }:
-
 {
   home = {
     username = "cbartelt";
@@ -21,7 +20,6 @@
       stow
       btop
       # ... add your tools here
-      openssl
       libyaml
 
       # Applications
@@ -32,7 +30,6 @@
       #devenv.packages.aarch64-darwin.devenv
       neovim
       starship
-      kitty
       wezterm
       yazi
       zoxide
@@ -44,6 +41,10 @@
       golangci-lint
       hugo
       lazysql
+      snyk
+      direnv
+      tilt
+      azure-cli
 
       # infrastructur
       qemu

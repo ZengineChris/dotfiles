@@ -10,9 +10,10 @@
   };
 
 
-  outputs = { nixpkgs, home-manager, ... }: {
+  outputs = { nixpkgs, home-manager, ... }: {    
+    #nixpkgs.config.allowUnfreePredicate = _: true;
+    #nixpkgs.config.allowUnfree = true;
     homeConfigurations = {
-
       "christian" = home-manager.lib.homeManagerConfiguration {
         # darwin is the macOS kernel and aarch64 means ARM, i.e. apple silicon
         pkgs = nixpkgs.legacyPackages.aarch64-darwin;
