@@ -99,17 +99,6 @@ require("lspconfig").ruby_lsp.setup {
     }
 }
 
-
-require("lspconfig").rubocop.setup {
-    on_attach = on_attach,
-    default_config = {
-        filetypes = { 'ruby', 'erb' },
-        name = 'rubocop',
-        cmd = { "bundle", "exec", "rubocop" },
-    }
-}
-
-
 local cmp = require('cmp')
 local cmp_format = lsp_zero.cmp_format()
 

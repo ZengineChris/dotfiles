@@ -43,6 +43,7 @@
       lazysql
       snyk
       direnv
+      nix-direnv
       tilt
       azure-cli
 
