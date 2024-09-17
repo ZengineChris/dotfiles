@@ -14,6 +14,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
+        dir = "~/playground/vimguys",
+        config = function ()
+            require("vimguys")
+        end
+    },
+    {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" }

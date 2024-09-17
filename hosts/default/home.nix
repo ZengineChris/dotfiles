@@ -51,6 +51,7 @@
       docker
       helmfile
       # doppler
+      devpod
       k3d
       k9s
       k6

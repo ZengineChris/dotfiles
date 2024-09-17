@@ -43,7 +43,7 @@ cpus: null
 
 # Memory size
 # 🟢 Builtin default: min("4GiB", half of host memory)
-memory: null
+memory: "12GiB"
 
 # Disk size
 # 🟢 Builtin default: "100GiB"
