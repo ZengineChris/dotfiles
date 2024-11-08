@@ -56,6 +56,26 @@ require('mason-lspconfig').setup({
 })
 
 
+require('lspconfig').nixd.setup {
+    on_attach = on_attach,
+    cmd = { "nixd" },
+    capabilities = capabilities,
+    default_config = {
+        filetypes = { "nix" },
+    },
+    settings = {
+        nixd = {
+            nixpkgs = {
+                expr = "import <nixpkgs> {} ",
+            },
+            formatting = {
+                command = { "alejandra" },
+            },
+        },
+    },
+}
+
+
 require('lspconfig').lua_ls.setup {
     on_attach = on_attach,
     capabilities = capabilities,
