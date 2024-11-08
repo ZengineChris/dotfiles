@@ -93,13 +93,9 @@
           export PATH="$HOME/go/bin:$PATH"
           export PATH="$HOME/.rd/bin:$PATH"
           export PATH="$HOME/.cargo/bin:$PATH"
-
-
             bindkey -e
             bindkey '^j' history-search-forward
             bindkey '^k' history-search-backward
-
-
             HISTSIZE=5000
             HISTFILE=~/.zsh_history
             SAVEHIST=$HISTSIZE
@@ -120,21 +116,19 @@
             eval "$(fzf --zsh)"
             eval "$(zoxide init zsh)"
             cx() { cd "$@" && l; }
-
-  '';
-  oh-my-zsh = {
-    enable = false;
-    theme = "";
-    plugins = [
-      # "git"
-      "npm"
-      "history"
-      "node"
-      "golang"
-      "rust"
-      "deno"
-    ];
-  };
-
-
+            . "$HOME/.asdf/asdf.sh"
+    '';
+    oh-my-zsh = {
+      enable = false;
+      theme = "";
+      plugins = [
+        # "git"
+        "npm"
+        "history"
+        "node"
+        "golang"
+        "rust"
+        "deno"
+      ];
+    };
 }

@@ -14,12 +14,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
     {
-        dir = "~/playground/vimguys",
-        config = function ()
-            require("vimguys")
-        end
-    },
-    {
         "ThePrimeagen/harpoon",
         branch = "harpoon2",
         dependencies = { "nvim-lua/plenary.nvim" }
@@ -149,5 +143,4 @@ require("lazy").setup({
     },
     'folke/zen-mode.nvim',
     'theHamsta/nvim-dap-virtual-text',
-    { 'TabbyML/vim-tabby' }
 })
