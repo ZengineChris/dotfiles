@@ -66,6 +66,7 @@
 
             pkgs.lua-language-server
             pkgs.tailwindcss-language-server
+            pkgs.golangci-lint
 
             # infrastructur
             pkgs.qemu
@@ -145,8 +146,10 @@
         users.users.christian = {
           name = "christian";
           home = "/Users/christian";
+          shell = pkgs.nushell;
         };
 
+        environment.shells = [pkgs.nushell];
 
         # Auto upgrade nix package and the daemon service.
         services.nix-daemon.enable = true;

@@ -1,13 +1,13 @@
 palette = "catppuccin_mocha"
 add_newline = true
 
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[➜](bold red)"
+
 format = """$env_var$os$username$hostname$kubernetes$directory$git_branch$git_status$python
 $character
 """
-
-
-
-
 # An alternative to the username module which displays a symbol that
 # represents the current operating system
 
