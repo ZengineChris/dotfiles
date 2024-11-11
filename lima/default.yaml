@@ -45,7 +45,14 @@ memory: "8GiB"
 # Mounts are disabled in this template, but can be enabled optionally.
 mounts:
   - location: "~"
+    writable: true
 mountType: "virtiofs"
+
+# external disk
+# limactl disk create docker --size 10G
+# will be available as /mnt/lima-docker
+#additionalDisks:
+#- docker
 
 # containerd is managed by k3s, not by Lima, so the values are set to false here.
 containerd:
@@ -60,9 +67,6 @@ rosetta:
   # Register rosetta to /proc/sys/fs/binfmt_misc
   # 🟢 Builtin default: false
   binfmt: null
-
-    #additionalDisks:
-    #- docker
 
 provision:
 - mode: system
