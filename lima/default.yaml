@@ -29,10 +29,22 @@ vmType: "vz"
 # This template requires Lima v0.7.0 or later.
 
 images:
+
+# Try to use release-yyyyMMdd image if available. Note that release-yyyyMMdd will be removed after several months.
+- location: "https://cloud-images.ubuntu.com/releases/24.04/release-20241004/ubuntu-24.04-server-cloudimg-amd64.img"
+  arch: "x86_64"
+  digest: "sha256:fad101d50b06b26590cf30542349f9e9d3041ad7929e3bc3531c81ec27f2c788"
+- location: "https://cloud-images.ubuntu.com/releases/24.04/release-20241004/ubuntu-24.04-server-cloudimg-arm64.img"
+  arch: "aarch64"
+  digest: "sha256:e380b683b0c497d2a87af8a5dbe94c42eb54548fa976167f307ed8cf3944ec57"
+# Fallback to the latest release image.
+# Hint: run `limactl prune` to invalidate the cache
 - location: "https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-amd64.img"
   arch: "x86_64"
 - location: "https://cloud-images.ubuntu.com/releases/24.04/release/ubuntu-24.04-server-cloudimg-arm64.img"
   arch: "aarch64"
+
+
 
 # CPUs
 # 🟢 Builtin default: min(4, host CPU cores)
@@ -45,6 +57,7 @@ memory: "8GiB"
 # Mounts are disabled in this template, but can be enabled optionally.
 mounts:
   - location: "~"
+  - location: "/tmp/lima"
     writable: true
 mountType: "virtiofs"
 
@@ -57,7 +70,7 @@ mountType: "virtiofs"
 # containerd is managed by k3s, not by Lima, so the values are set to false here.
 containerd:
   system: false
-  user: true
+  user: false
 
 rosetta:
   # Enable Rosetta inside the VM; needs `vmType: vz`
@@ -70,10 +83,35 @@ rosetta:
 
 provision:
 - mode: system
+  # This script defines the host.docker.internal hostname when hostResolver is disabled.
+  # It is also needed for lima 0.8.2 and earlier, which does not support hostResolver.hosts.
+  # Names defined in /etc/hosts inside the VM are not resolved inside containers when
+  # using the hostResolver; use hostResolver.hosts instead (requires lima 0.8.3 or later).
+  script: |
+    #!/bin/sh
+    sed -i 's/host.lima.internal.*/host.lima.internal host.docker.internal/' /etc/hosts
+- mode: system
+  script: |
+    #!/bin/bash
+    set -eux -o pipefail
+    command -v docker >/dev/null 2>&1 && exit 0
+    export DEBIAN_FRONTEND=noninteractive
+    curl -fsSL https://get.docker.com | sh
+    # NOTE: you may remove the lines below, if you prefer to use rootful docker, not rootless
+    systemctl disable --now docker
+    apt-get install -y uidmap dbus-user-session
+- mode: user
+  script: |
+    #!/bin/bash
+    set -eux -o pipefail
+    systemctl --user start dbus
+    dockerd-rootless-setuptool.sh install
+    docker context use rootless
+- mode: system
   script: |
     #!/bin/sh
     if [ ! -d /var/lib/rancher/k3s ]; then
-            curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --write-kubeconfig-mode 644" sh -
+            curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="server --write-kubeconfig-mode=644 --embedded-registry" sh -
     fi
 - mode: system
   script: |
@@ -81,11 +119,13 @@ provision:
     mkdir -p /etc/rancher/k3s/
     cat <<EOF > /etc/rancher/k3s/registries.yaml
     mirrors:
-      k3s.io:
+      k8s.io:
+      zengine.dev:
+      local.io:
         endpoint:
           - "http://localhost:5000/v2"
     configs:
-      k3s.io:
+      local.io:
         auth:
           username: admin
           password: admin
@@ -107,6 +147,21 @@ probes:
     The k3s kubeconfig file has not yet been created.
     Run "limactl shell k3s sudo journalctl -u k3s" to check the log.
     If that is still empty, check the bottom of the log at "/var/log/cloud-init-output.log".
+
+- script: |
+    #!/bin/bash
+    set -eux -o pipefail
+    if ! timeout 30s bash -c "until command -v docker >/dev/null 2>&1; do sleep 3; done"; then
+      echo >&2 "docker is not installed yet"
+      exit 1
+    fi
+    if ! timeout 30s bash -c "until pgrep rootlesskit; do sleep 3; done"; then
+      echo >&2 "rootlesskit (used by rootless docker) is not running"
+      exit 1
+    fi
+  hint: See "/var/log/cloud-init-output.log" in the guest
+
+
 copyToHost:
 - guest: "/etc/rancher/k3s/k3s.yaml"
   host: "{{.Dir}}/copied-from-guest/kubeconfig.yaml"
@@ -118,7 +173,10 @@ hostResolver:
   # resolve inside containers, and not just inside the VM itself.
   hosts:
     host.docker.internal: host.lima.internal
-      #portForwards:
+
+portForwards:
+  - guestSocket: "/run/user/{{.UID}}/docker.sock"
+    hostSocket: "{{.Dir}}/sock/docker.sock"
       #- guestSocket: "/run/user/{{.UID}}/docker/containerd/containerd.sock"
       #hostSocket: "{{.Dir}}/sock/containerd.sock"
 message: |
@@ -126,4 +184,10 @@ message: |
   ------
   export KUBECONFIG="{{.Dir}}/copied-from-guest/kubeconfig.yaml"
   kubectl ...
+  ------
+    To run `docker` on the host (assumes docker-cli is installed), run the following commands:
+  ------
+  docker context create lima-{{.Name}} --docker "host=unix://{{.Dir}}/sock/docker.sock"
+  docker context use lima-{{.Name}}
+  docker run hello-world
   ------

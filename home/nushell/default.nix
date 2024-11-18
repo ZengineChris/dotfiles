@@ -38,8 +38,13 @@
     vi = "nvim";
     vim = "nvim";
     nano = "nvim";
+    nerdclt = "lima nerdctl";
+    k = "kubectl";
+    "update" = "nix flake update ~/github.com/zengineChris/dotfiles/darwin";
+    "switch" = "darwin-rebuild switch --flake ~/github.com/zengineChris/dotfiles/darwin";
   };
   environmentVariables = {
     KUBE_EDITOR = "nvim";
+    EDITOR = "nvim";
   };
 }

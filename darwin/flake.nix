@@ -76,6 +76,7 @@
             pkgs.qemu
             pkgs.helmfile
             # doppler
+            pkgs.docker
             pkgs.devpod
             pkgs.k3d
             pkgs.k9s

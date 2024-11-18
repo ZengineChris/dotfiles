@@ -4,10 +4,6 @@
   home.packages = [
     # dependencies 
     pkgs.gum
-    (pkgs.writeShellScriptBin "docker" /*sh*/ ''
-        #!/bin/sh
-        lima nerdctl "$@"
-    '')
     # commit message helper
     (pkgs.writeShellScriptBin "gc" /*bash*/ ''
         TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert" "ci")
