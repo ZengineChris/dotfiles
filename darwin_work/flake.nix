@@ -123,6 +123,7 @@
           "gnu-tar"
           "libpq"
           "lima"
+          "kubelogin"
           {
             name = "sketchybar";
             start_service = true;
