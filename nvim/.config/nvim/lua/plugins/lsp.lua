@@ -75,6 +75,8 @@ require('lspconfig').nixd.setup {
     },
 }
 
+-- Lsp for gleam
+require('lspconfig').gleam.setup {}
 
 require('lspconfig').lua_ls.setup {
     on_attach = on_attach,
