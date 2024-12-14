@@ -1,12 +1,12 @@
 {
   description = "Macbook Pro";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     templ.url = "github:a-h/templ";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     fenix = {
       url = "github:nix-community/fenix";
@@ -63,6 +63,10 @@
             ## python
             pkgs.python3
             pkgs.poetry
+
+            ## Erlang
+            pkgs.erlang
+            pkgs.gleam
 
             ## Lsp
 
