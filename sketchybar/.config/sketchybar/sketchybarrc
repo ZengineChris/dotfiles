@@ -6,7 +6,6 @@ source "$HOME/.config/sketchybar/icons.sh" # Loads all defined icons
 ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are configured
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
 
-FONT="SF Pro" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 PADDINGS=3 # All paddings use this value (icon, label, background)
 
 # Setting up and starting the helper process
@@ -39,11 +38,11 @@ sketchybar --bar "${bar[@]}"
 # Setting up default values
 defaults=(
   updates=when_shown
-  icon.font="$FONT:Bold:14.0"
+  icon.font="JetBrainsMono Nerd Font:Bold:17.0"
+  label.font="JetBrainsMono Nerd Font:Bold:14.0"
   icon.color=$ICON_COLOR
   icon.padding_left=$PADDINGS
   icon.padding_right=$PADDINGS
-  label.font="$FONT:Semibold:13.0"
   label.color=$LABEL_COLOR
   label.padding_left=$PADDINGS
   label.padding_right=$PADDINGS
@@ -60,6 +59,27 @@ defaults=(
 )
 
 sketchybar --default "${defaults[@]}"
+
+##### Adding Mission Control Space Indicators #####
+# Let's add some mission control spaces:
+# https://felixkratz.github.io/SketchyBar/config/components#space----associate-mission-control-spaces-with-an-item
+# to indicate active and available mission control spaces.
+
+sketchybar --add event aerospace_workspace_change
+
+for sid in $(aerospace list-workspaces --all); do
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change \
+        --set space.$sid \
+        background.color=0x44ffffff \
+        background.corner_radius=5 \
+        background.height=20 \
+        background.drawing=off \
+        label="$sid" \
+        click_script="aerospace workspace $sid" \
+        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+done
+
 
 # Left
 source "$ITEM_DIR/apple.sh"
@@ -81,3 +101,4 @@ source "$ITEM_DIR/cpu.sh"
 sketchybar --update
 
 echo "sketchybar configuation loaded.."
+

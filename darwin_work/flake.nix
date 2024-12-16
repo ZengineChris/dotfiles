@@ -1,12 +1,12 @@
 {
   description = "Cognigy MacBook";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.05-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     templ.url = "github:a-h/templ";
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     fenix = {
       url = "github:nix-community/fenix";
@@ -38,9 +38,7 @@
 
         pkgs.obsidian
         pkgs.tailwindcss
-        pkgs.tailwindcss-language-server
         pkgs.pass
-        pkgs.lua-language-server
         pkgs.stylua
         pkgs.zoxide
         pkgs.iperf
@@ -103,6 +101,9 @@
         pkgs.fd
         pkgs.eza
         pkgs.stow
+        pkgs.coreutils
+        pkgs.curl
+        pkgs.asdf-vm
       ];
 
       fonts.packages = [

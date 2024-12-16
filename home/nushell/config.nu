@@ -10,4 +10,8 @@ $env.config = {
   }
 }
 
-$env.EDITOR = nvim
+$env.EDITOR = 'nvim'
+$env.KUBE_EDITOR = 'nvim';
+
+$env.ASDF_DIR = '/Users/cbartelt/.asdf'
+source /Users/cbartelt/.asdf/asdf.nu
