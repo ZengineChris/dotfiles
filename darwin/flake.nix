@@ -43,6 +43,7 @@
             pkgs.go
             pkgs.air
             pkgs.templ
+            pkgs.go-task
 
             ## Js/Ts
             pkgs.nodejs
@@ -123,12 +124,14 @@
           taps = [
             "FelixKratz/formulae"
             "nikitabobko/tap"
+            "homebrew/services"
           ];
           casks = [
             "google-chrome"
             "obs"
             "vlc"
             "nikitabobko/tap/aerospace"
+            "gnupg"
           ];
           onActivation.cleanup = "zap";
         };
