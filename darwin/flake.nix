@@ -12,195 +12,218 @@
       url = "github:nix-community/fenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    devx = {
+      url = "github:zenginechris/devx";
+      inputs.nixpkgs.follows = "nixpkgs"; # Add this line
+    };
   };
 
-  outputs = { self, nix-darwin, nixpkgs, templ, home-manager, fenix, ... }@inputs:
-    let
-      configuration = { pkgs, ... }: {
-        # List packages installed in system profile. To search by name, run:
-        # $ nix-env -qaP | grep wget
-        nixpkgs.config.allowUnfree = true;
-        nixpkgs.overlays = [
-          inputs.templ.overlays.default
-          fenix.overlays.default
-        ];
-        environment.systemPackages =
-          [
-            pkgs.neovim
-            pkgs.ffmpeg
-            pkgs.ripgrep
-            pkgs.obsidian
-            pkgs.tailwindcss
-            pkgs.pass
-            pkgs.stylua
-            pkgs.zoxide
-            pkgs.iperf
-            pkgs.wezterm
-            pkgs.devenv
+  outputs = {
+    self,
+    nix-darwin,
+    nixpkgs-unstable,
+    # Add this
+    nixpkgs,
+    templ,
+    home-manager,
+    fenix,
+    devx,
+    ...
+  } @ inputs: let
+    configuration = {pkgs, ...}: {
+      # List packages installed in system profile. To search by name, run:
+      # $ nix-env -qaP | grep wget
+      nixpkgs.config.allowUnfree = true;
+      nixpkgs.overlays = [
+        inputs.templ.overlays.default
+        fenix.overlays.default
+        # Add devx overlay
+        (final: prev: {
+          devx-cli = devx.packages.${prev.system}.default;
+        })
+      ];
+      environment.systemPackages = [
+        pkgs.neovim
+        pkgs.ffmpeg
+        pkgs.ripgrep
+        pkgs.obsidian
+        pkgs.tailwindcss
+        pkgs.pass
+        pkgs.stylua
+        pkgs.zoxide
+        pkgs.iperf
+        pkgs.wezterm
+        pkgs.direnv
 
-            ## Languages
-            ## Golang
-            pkgs.go
-            pkgs.air
-            pkgs.templ
-            pkgs.go-task
+        ##
+        pkgs.devx-cli
 
-            ## Js/Ts
-            pkgs.nodejs
-            pkgs.bun
+        ## Languages
+        ## Golang
+        pkgs.go
+        pkgs.air
+        pkgs.templ
+        pkgs.go-task
 
-            ## Rust
-            (pkgs.fenix.complete.withComponents [
-              "cargo"
-              "clippy"
-              "rust-src"
-              "rustc"
-              "rustfmt"
-            ])
-            pkgs.rust-analyzer-nightly
+        ## Js/Ts
+        pkgs.nodejs
+        pkgs.bun
 
-            pkgs.lua
-            pkgs.llvm
-            ## python
-            pkgs.python3
-            pkgs.poetry
+        ## Rust
+        (pkgs.fenix.complete.withComponents [
+          "cargo"
+          "clippy"
+          "rust-src"
+          "rustc"
+          "rustfmt"
+        ])
+        pkgs.rust-analyzer-nightly
 
-            ## Erlang
-            pkgs.erlang
-            pkgs.gleam
+        pkgs.lua
+        pkgs.llvm
+        ## python
+        pkgs.python3
+        pkgs.poetry
 
-            ## Lsp
+        ## Erlang
+        pkgs.erlang
+        pkgs.gleam
 
-            pkgs.golangci-lint
-            pkgs.lua-language-server
-            pkgs.tailwindcss-language-server
-            pkgs.alejandra
-            pkgs.nixd
+        ## Lsp
 
-            # infrastructur
-            pkgs.qemu
-            pkgs.helmfile
-            # doppler
-            pkgs.docker
-            pkgs.devpod
-            pkgs.k3d
-            pkgs.k9s
-            pkgs.k6
-            pkgs.trivy
-            pkgs.kustomize
-            pkgs.kubernetes-helm
-            pkgs.kubectl
-            pkgs.natscli
-            pkgs.nats-server
-            pkgs.timoni
-            pkgs.cue
-            pkgs.doctl
+        pkgs.golangci-lint
+        pkgs.lua-language-server
+        pkgs.tailwindcss-language-server
+        pkgs.alejandra
+        pkgs.nixd
 
-            ## Tools
-            pkgs.jq
-            pkgs.bat
-            pkgs.bat-extras.prettybat
-            pkgs.neofetch
-            pkgs.yazi
-            pkgs.fd
-            pkgs.stow
-          ];
+        # infrastructur
+        pkgs.qemu
+        pkgs.helmfile
+        # doppler
+        pkgs.docker
+        pkgs.devpod
+        pkgs.k3d
+        pkgs.k9s
+        pkgs.k6
+        pkgs.trivy
+        pkgs.kustomize
+        pkgs.kubernetes-helm
+        pkgs.kubectl
+        pkgs.natscli
+        pkgs.nats-server
+        pkgs.timoni
+        pkgs.cue
+        pkgs.doctl
 
-        fonts.packages = [
-          (pkgs.nerdfonts.override { fonts = [ "JetBrainsMono" ]; })
-        ];
+        ## Tools
+        pkgs.jq
+        pkgs.bat
+        pkgs.bat-extras.prettybat
+        pkgs.bat-extras.batgrep
+        pkgs.bat-extras.batdiff
+        pkgs.neofetch
+        pkgs.yazi
+        pkgs.fd
+        pkgs.stow
+        pkgs.delta
+      ];
 
+      fonts.packages = [
+        (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+      ];
 
-        homebrew = {
-          enable = true;
-          brews = [
-            {
-              name = "sketchybar";
-              start_service = true;
-            }
-            "huggingface-cli"
-            "lima"
-          ];
-          taps = [
-            "FelixKratz/formulae"
-            "nikitabobko/tap"
-            "homebrew/services"
-          ];
-          casks = [
-            "google-chrome"
-            "obs"
-            "vlc"
-            "nikitabobko/tap/aerospace"
-            "gnupg"
-          ];
-          onActivation.cleanup = "zap";
-        };
-
-
-        system.defaults = {
-          dock.autohide = true;
-          dock.largesize = 64;
-          dock.persistent-apps = [
-            "${pkgs.wezterm}/Applications/Wezterm.app"
-            "${pkgs.obsidian}/Applications/Obsidian.app"
-            "/System/Applications/Mail.app"
-            "/System/Applications/Calendar.app"
-          ];
-          finder.FXPreferredViewStyle = "clmv";
-          loginwindow.GuestEnabled = false;
-          NSGlobalDomain.AppleICUForce24HourTime = true;
-          NSGlobalDomain.AppleInterfaceStyle = "Dark";
-          NSGlobalDomain.KeyRepeat = 2;
-        };
-
-        users.users.christian = {
-          name = "christian";
-          home = "/Users/christian";
-          shell = pkgs.nushell;
-        };
-
-        environment.shells = [ pkgs.nushell ];
-
-        # Auto upgrade nix package and the daemon service.
-        services.nix-daemon.enable = true;
-        # nix.package = pkgs.nix;
-
-        # Necessary for using flakes on this system.
-        nix.settings.experimental-features = "nix-command flakes";
-
-        # Create /etc/zshrc that loads the nix-darwin environment.
-        #programs.zsh.enable = true; # default shell on catalina
-
-        # Set Git commit hash for darwin-version.
-        system.configurationRevision = self.rev or self.dirtyRev or null;
-
-        # Used for backwards compatibility, please read the changelog before changing.
-        # $ darwin-rebuild changelog
-        system.stateVersion = 4;
-
-        # The platform the configuration will be used on.
-        nixpkgs.hostPlatform = "aarch64-darwin";
-      };
-    in
-    {
-      # Build darwin flake using:
-      # $ darwin-rebuild build --flake .#simple
-      darwinConfigurations."Zengine" = nix-darwin.lib.darwinSystem {
-        modules = [
-          configuration
-          home-manager.darwinModules.home-manager
+      homebrew = {
+        enable = true;
+        brews = [
           {
-            # `home-manager` config
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            #home-manager.backupFileExtension = true;
-            home-manager.users.christian = import ./home.nix;
+            name = "sketchybar";
+            start_service = true;
           }
+          "huggingface-cli"
+          "lima"
+          "colima"
+          "gh"
+          "gnupg"
         ];
+        taps = [
+          "FelixKratz/formulae"
+          "nikitabobko/tap"
+          "homebrew/services"
+        ];
+        casks = [
+          "google-chrome"
+          "obs"
+          "vlc"
+          "ghostty"
+          "nikitabobko/tap/aerospace"
+        ];
+        onActivation.cleanup = "zap";
+        onActivation.upgrade = true;
       };
 
-      # Expose the package set, including overlays, for convenience.
-      darwinPackages = self.darwinConfigurations."Zengine".pkgs;
-    };
-}
+      system.defaults = {
+        dock.autohide = true;
+        dock.largesize = 64;
+        dock.persistent-apps = [
+          "${pkgs.wezterm}/Applications/Ghostty.app"
+          "${pkgs.obsidian}/Applications/Obsidian.app"
+          "/System/Applications/Mail.app"
+          "/System/Applications/Calendar.app"
+        ];
+        finder.FXPreferredViewStyle = "clmv";
+        loginwindow.GuestEnabled = false;
+        NSGlobalDomain.AppleICUForce24HourTime = true;
+        NSGlobalDomain.AppleInterfaceStyle = "Dark";
+        NSGlobalDomain.KeyRepeat = 2;
+      };
 
+      users.users.christian = {
+        name = "christian";
+        home = "/Users/christian";
+        shell = pkgs.nushell;
+      };
+
+      environment.shells = [pkgs.nushell];
+
+      # Auto upgrade nix package and the daemon service.
+      services.nix-daemon.enable = true;
+      # nix.package = pkgs.nix;
+
+      # Necessary for using flakes on this system.
+      nix.settings.experimental-features = "nix-command flakes";
+
+      # Create /etc/zshrc that loads the nix-darwin environment.
+      #programs.zsh.enable = true; # default shell on catalina
+
+      # Set Git commit hash for darwin-version.
+      system.configurationRevision = self.rev or self.dirtyRev or null;
+
+      # Used for backwards compatibility, please read the changelog before changing.
+      # $ darwin-rebuild changelog
+      system.stateVersion = 4;
+
+      # The platform the configuration will be used on.
+      nixpkgs.hostPlatform = "aarch64-darwin";
+    };
+  in {
+    # Build darwin flake using:
+    # $ darwin-rebuild build --flake .#simple
+    darwinConfigurations."Zengine" = nix-darwin.lib.darwinSystem {
+      modules = [
+        configuration
+        home-manager.darwinModules.home-manager
+        {
+          # `home-manager` config
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          #home-manager.backupFileExtension = true;
+          home-manager.users.christian = import ./home.nix;
+        }
+      ];
+    };
+
+    # Expose the package set, including overlays, for convenience.
+    darwinPackages = self.darwinConfigurations."Zengine".pkgs;
+  };
+}
