@@ -1,12 +1,12 @@
 {
   description = "Macbook Pro";
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     nix-darwin.url = "github:LnL7/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
     templ.url = "github:a-h/templ";
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs-unstable";
     fenix = {
       url = "github:nix-community/fenix";
@@ -34,6 +34,7 @@
       # List packages installed in system profile. To search by name, run:
       # $ nix-env -qaP | grep wget
       nixpkgs.config.allowUnfree = true;
+      nixpkgs.config.allowBroken = true;
       nixpkgs.overlays = [
         inputs.templ.overlays.default
         fenix.overlays.default
@@ -52,7 +53,6 @@
         pkgs.stylua
         pkgs.zoxide
         pkgs.iperf
-        pkgs.wezterm
         pkgs.direnv
 
         ##
@@ -68,6 +68,7 @@
         ## Js/Ts
         pkgs.nodejs
         pkgs.bun
+        pkgs.pnpm
 
         ## Rust
         (pkgs.fenix.complete.withComponents [
@@ -115,6 +116,7 @@
         pkgs.timoni
         pkgs.cue
         pkgs.doctl
+        pkgs.kcl
 
         ## Tools
         pkgs.jq
@@ -130,7 +132,9 @@
       ];
 
       fonts.packages = [
-        (pkgs.nerdfonts.override {fonts = ["JetBrainsMono"];})
+        pkgs.nerd-fonts._0xproto
+        pkgs.nerd-fonts.droid-sans-mono
+        pkgs.nerd-fonts.jetbrains-mono
       ];
 
       homebrew = {
@@ -166,7 +170,7 @@
         dock.autohide = true;
         dock.largesize = 64;
         dock.persistent-apps = [
-          "${pkgs.wezterm}/Applications/Ghostty.app"
+     #     "${pkgs.ghostty}/Applications/Ghostty.app"
           "${pkgs.obsidian}/Applications/Obsidian.app"
           "/System/Applications/Mail.app"
           "/System/Applications/Calendar.app"
