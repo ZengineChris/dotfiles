@@ -44,6 +44,7 @@
         })
       ];
       environment.systemPackages = [
+        pkgs.uutils-coreutils
         pkgs.neovim
         pkgs.ffmpeg
         pkgs.ripgrep
@@ -54,6 +55,8 @@
         pkgs.zoxide
         pkgs.iperf
         pkgs.direnv
+        pkgs.curlie
+        pkgs.lazygit
 
         ##
         pkgs.devx-cli
@@ -85,6 +88,7 @@
         ## python
         pkgs.python3
         pkgs.poetry
+        pkgs.uv
 
         ## Erlang
         pkgs.erlang
@@ -129,6 +133,7 @@
         pkgs.fd
         pkgs.stow
         pkgs.delta
+        pkgs.jujutsu
       ];
 
       fonts.packages = [
@@ -149,6 +154,7 @@
           "colima"
           "gh"
           "gnupg"
+          "posting"
         ];
         taps = [
           "FelixKratz/formulae"
@@ -190,8 +196,6 @@
 
       environment.shells = [pkgs.nushell];
 
-      # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
       # nix.package = pkgs.nix;
 
       # Necessary for using flakes on this system.
@@ -202,6 +206,8 @@
 
       # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
+      # Auto upgrade nix package and the daemon service.
+      ids.gids.nixbld = 350;
 
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
