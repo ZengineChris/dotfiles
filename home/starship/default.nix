@@ -1,6 +1,15 @@
-{ config, pkgs, ... }:
-
 {
-    enable = true;
-    settings = pkgs.lib.importTOML ./starship.toml;
+  config,
+  pkgs,
+  ...
+}: let
+  starshipPath = "${config.home.homeDirectory}/github.com/zengineChris/dotfiles/home/starship/starship.toml";
+in {
+  config = {
+    home.packages = [
+      # dependencies
+      pkgs.starship
+    ];
+    xdg.configFile."starship/starship.toml".source = config.lib.file.mkOutOfStoreSymlink starshipPath;
+  };
 }

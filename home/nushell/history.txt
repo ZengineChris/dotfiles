@@ -1,0 +1,32 @@
+darwin-rebuild switch --flake .
+exit
+v
+nvim
+exit
+v
+cd
+cd github.com/
+cd zengineChris/dotfiles/
+ls
+nivm
+v
+cp --recursive ghostty/.config/ghostty/ home/ghostty
+v
+git add ./
+darwin-rebuild switch --flake .
+v
+exit
+v
+cd
+cd github.com/zengineChris/dotfiles/
+v
+git add ./
+darwin-rebuild switch --flake .
+v
+darwin-rebuild switch --flake .
+exit
+v
+cd
+cd github.com/zengineChris/dotfiles/
+ls
+git status
