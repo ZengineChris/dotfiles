@@ -30,3 +30,7 @@ cd
 cd github.com/zengineChris/dotfiles/
 ls
 git status
+git add ./
+git commit -m "changed to only one flake"
+git push
+v
