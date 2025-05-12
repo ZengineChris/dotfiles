@@ -57,6 +57,8 @@
               ./home/nvim.nix
               ./home/sketchybar.nix
               ./home/ghostty.nix
+              ./home/carapace.nix
+              ./home/zellij.nix
             ];
           };
         }

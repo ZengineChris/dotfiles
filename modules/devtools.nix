@@ -12,6 +12,7 @@
       pkgs.direnv
       pkgs.curlie
       pkgs.lazygit
+      pkgs.fzf
 
       pkgs.jq
       pkgs.bat
@@ -23,7 +24,6 @@
       pkgs.fd
       pkgs.delta
       pkgs.jujutsu
-      #pkgs.ghostty
 
       # DevOps
       pkgs.qemu

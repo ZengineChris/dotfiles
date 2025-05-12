@@ -34,3 +34,33 @@ git add ./
 git commit -m "changed to only one flake"
 git push
 v
+git add ./
+git commit -m "update readme "
+git push
+v
+darwin-rebuild switch --flake .
+v
+exit 
+cd 
+kubectl
+kubectl get pods
+kubectl get nodes
+colima list
+kubectl get pods -A
+v
+cd github.com/zengineChris/dotfiles/
+v
+fzf
+v
+yazi
+v
+darwin-rebuild switch --flake .
+fzf
+v
+cd
+v
+tmux
+v
+cd github.com/zengineChris/dotfiles/
+v
+darwin-rebuild switch --flake .

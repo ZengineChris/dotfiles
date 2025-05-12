@@ -1,5 +1,10 @@
-{ pkgs, ... }:
-{
-  enable = true;
-  enableNushellIntegration = true;
+{pkgs, ...}: {
+  config = {
+    programs = {
+      carapace = {
+        enable = true;
+        enableNushellIntegration = true;
+      };
+    };
+  };
 }
