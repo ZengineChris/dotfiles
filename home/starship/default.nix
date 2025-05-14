@@ -10,6 +10,6 @@ in {
       # dependencies
       pkgs.starship
     ];
-    xdg.configFile."starship/starship.toml".source = config.lib.file.mkOutOfStoreSymlink starshipPath;
+    xdg.configFile."starship.toml".source = config.lib.file.mkOutOfStoreSymlink starshipPath;
   };
 }

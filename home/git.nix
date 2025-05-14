@@ -1,4 +1,4 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   config = {
     home.packages = [
       # dependencies
@@ -6,7 +6,7 @@
       # commit message helper
       (pkgs.writeShellScriptBin "gc"
         /*
-        bash
+          bash
         */
         ''
           TYPE=$(gum choose "fix" "feat" "docs" "style" "refactor" "test" "chore" "revert" "ci")
@@ -35,6 +35,13 @@
       userEmail = "zengineChris@gmail.com";
       delta = {
         enable = true;
+        options = {
+          diff-so-fancy = true;
+          line-numbers = true;
+          true-color = "always";
+          # features => named groups of settings, used to keep related settings organized
+          # features = "";
+        };
       };
       extraConfig = {
         core.editor = "nvim";

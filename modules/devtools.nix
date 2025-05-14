@@ -1,4 +1,4 @@
-{ pkgs }: {
+{ pkgs }: {    
   config = {
     environment.systemPackages = [
       pkgs.uutils-coreutils
@@ -12,7 +12,6 @@
       pkgs.direnv
       pkgs.curlie
       pkgs.lazygit
-      pkgs.fzf
       pkgs.just
 
       pkgs.jq
@@ -23,8 +22,19 @@
       pkgs.neofetch
       pkgs.yazi
       pkgs.fd
-      pkgs.delta
+      pkgs.delta # A viewer for git and diff output
       pkgs.jujutsu
+
+      pkgs.hyperfine # command-line benchmarking tool
+      pkgs.gping # ping, but with a graph(TUI)
+      pkgs.doggo # DNS client for humans
+
+      # Interactively filter its input using fuzzy searching, not limit to filenames.
+      pkgs.fzf
+      # search for files by name, faster than find
+      pkgs.fd
+
+      pkgs.sad # CLI search and replace, just like sed, but with diff preview.
 
       # DevOps
       pkgs.qemu

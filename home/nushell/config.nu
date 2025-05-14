@@ -69,3 +69,10 @@ def update-docker-secret [
 
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+
+# enable zoxide
+source ~/.zoxide.nu
+
+# enable atuin
+source ~/.local/share/atuin/init.nu

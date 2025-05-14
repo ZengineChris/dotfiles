@@ -59,6 +59,7 @@
               ./home/ghostty.nix
               ./home/carapace.nix
               ./home/zellij.nix
+              ./home/tools.nix
             ];
           };
         }

@@ -1,5 +1,5 @@
 palette = "catppuccin_mocha"
-add_newline = true
+add_newline = false
 
 [character]
 success_symbol = "[➜](bold green)"
