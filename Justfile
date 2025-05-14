@@ -52,6 +52,11 @@ gc:
   # https://github.com/NixOS/nix/issues/8508
   nix-collect-garbage --delete-older-than 7d
 
+[group('nix')]
+fmt:
+  # format the nix files in this repo
+  nix fmt
+
 
 [macos]
 [group('desktop')]
