@@ -13,6 +13,7 @@
       pkgs.curlie
       pkgs.lazygit
       pkgs.fzf
+      pkgs.just
 
       pkgs.jq
       pkgs.bat
