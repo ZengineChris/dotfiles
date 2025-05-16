@@ -16,7 +16,7 @@ sh <(curl -L https://nixos.org/nix/install)
 nix-shell -p just nushell
 
 # 3. deploy configuration
-just update 
+just zengine 
 
 # deploy with details
 just update debug
