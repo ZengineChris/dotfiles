@@ -10,7 +10,6 @@ utils_nu := absolute_path("utils.nu")
 default:
     @just --list
 
-
 # Run eval tests
 [group('nix')]
 test:
@@ -68,7 +67,7 @@ darwin-rollback:
 # Update the env
 [macos]
 [group('desktop')]
-update mode="default":
+zengine  mode="default":
   #!/usr/bin/env nu
   use {{utils_nu}} *;
-  darwin-switch {{mode}}
+  darwin-switch "Zengine" {{mode}}

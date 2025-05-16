@@ -1,10 +1,11 @@
 export def darwin-switch [
+    name: string
     mode: string
 ] {
     if "debug" == $mode {
-        darwin-rebuild switch --flake . --show-trace --verbose
+        darwin-rebuild switch --flake $".#($name)" --show-trace --verbose
     } else {
-        darwin-rebuild switch --flake .
+        darwin-rebuild switch --flake $".#($name)"
     }
 }
 

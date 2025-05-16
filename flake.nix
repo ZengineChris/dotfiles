@@ -2,84 +2,103 @@
   description = "MacBook Dev Env for Apple Silicon";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    nix-darwin.url = "github:LnL7/nix-darwin";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
-    nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager = {
+      url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+    nix-darwin = {
+      url = "github:LnL7/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
-  outputs = {
-    nixpkgs,
-    home-manager,
-    nix-darwin,
-    ...
-  }: {
-    # Define darwin configuration for M1/M2 Mac
-    darwinConfigurations."Zengine" = nix-darwin.lib.darwinSystem {
-      system = "aarch64-darwin"; # Specifically for Apple Silicon
-      specialArgs = {
-        pkgs = import nixpkgs {
-          system = "aarch64-darwin";
+  outputs =
+    { self
+    , nixpkgs
+    , nix-darwin
+    , home-manager
+    , ...
+    }:
+    let
+      mkPkgs = system:
+        import nixpkgs {
+          inherit system;
           config.allowUnfree = true;
           config.allowBroken = true;
         };
-      };
-      modules = [
-        ./darwin/default.nix
-
-        # Import modules with the Apple Silicon pkgs
-        (import ./modules/devtools.nix {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfree = true;
-          };
-        })
-        (import ./modules/deno.nix {
-          pkgs = import nixpkgs {
-            system = "aarch64-darwin";
-            config.allowUnfree = true;
-          };
-        })
-        (import ./darwin/homebrew.nix {inherit nixpkgs;})
-
-        # Proper integration of home-manager with nix-darwin
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.backupFileExtension = "backup";
-          home-manager.users.christian = {
-            imports = [
-              ./home/common.nix
-              ./home/git.nix
-              ./home/starship/default.nix
-              ./home/nushell.nix
-              ./home/nvim.nix
-              ./home/sketchybar.nix
-              ./home/ghostty.nix
-              ./home/carapace.nix
-              ./home/zellij.nix
-              ./home/tools.nix
-            ];
-          };
-        }
-      ];
-    };
-
-    # Standalone Home Manager configuration for M1/M2 Mac
-    homeConfigurations."christian" = home-manager.lib.homeManagerConfiguration {
-      pkgs = import nixpkgs {
+      user = import ./users/christian.nix;
+      darwinHost = import ./hosts/zengine.nix;
+      nixosHost = import ./hosts/zenbook.nix;
+    in
+    {
+      darwinConfigurations.${darwinHost.hostName} = nix-darwin.lib.darwinSystem {
         system = "aarch64-darwin";
-        config.allowUnfree = true;
+        specialArgs = {
+          pkgs = mkPkgs "aarch64-darwin";
+          inherit user darwinHost;
+        };
+        modules = [
+          ./darwin/default.nix
+          ./modules/devtools.nix
+          (import ./darwin/homebrew.nix { inherit nixpkgs; })
+
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.backupFileExtension = "backup";
+            home-manager.users.${user.name} = {
+              home.username = user.name;
+              home.homeDirectory = user.homeDirectory;
+              home.stateVersion = "25.05";
+              imports = [
+                ./home/git.nix
+                ./home/starship/default.nix
+                ./home/nushell.nix
+                ./home/nvim.nix
+                ./home/sketchybar.nix
+                ./home/ghostty.nix
+                ./home/carapace.nix
+                ./home/zellij.nix
+                ./home/tools.nix
+              ];
+            };
+          }
+        ];
       };
-      modules = [
-        ./home/common.nix
-      ];
-      extraSpecialArgs = {
-        # Add any special arguments you want to pass to your home modules
+
+      nixosConfigurations.${nixosHost.hostName} = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          pkgs = mkPkgs "x86_64-linux";
+          inherit user nixosHost;
+        };
+
+        modules = [
+          ./nixos/default.nix
+          ./modules/devtools.nix
+          home-manager.nixosModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.${user.name} = {
+              home.stateVersion = "25.05";
+              imports = [
+                ./home/git.nix
+                ./home/starship/default.nix
+                ./home/nushell.nix
+                ./home/nvim.nix
+                ./home/sketchybar.nix
+                ./home/ghostty.nix
+                ./home/carapace.nix
+                ./home/zellij.nix
+                ./home/tools.nix
+              ];
+              home.username = user.name;
+              home.homeDirectory = user.homeDirectory;
+            };
+          }
+        ];
       };
-      username = "christian";
-      homeDirectory = "/Users/christian";
     };
-  };
 }
