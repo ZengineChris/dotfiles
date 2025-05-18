@@ -76,3 +76,5 @@ source ~/.zoxide.nu
 
 # enable atuin
 source ~/.local/share/atuin/init.nu
+
+#use ./zen.nu

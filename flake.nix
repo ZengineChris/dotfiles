@@ -61,6 +61,7 @@
                 ./home/carapace.nix
                 ./home/zellij.nix
                 ./home/tools.nix
+                ./home/aeroSpace.nix
               ];
             };
           }
