@@ -12,6 +12,7 @@
       "gh"
       "gnupg"
       "posting"
+      "telepresenceio/telepresence/telepresence-oss"
     ];
     taps = [
       "FelixKratz/formulae"

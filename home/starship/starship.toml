@@ -5,14 +5,23 @@ add_newline = false
 success_symbol = "[➜](bold green)"
 error_symbol = "[➜](bold red)"
 
-format = """$env_var$os$username$hostname$kubernetes$directory$git_branch$git_status$python
-$character
-"""
-# An alternative to the username module which displays a symbol that
-# represents the current operating system
+format = """
+$username\
+$hostname\
+$git_branch\
+$git_status\
+$python\
+$nodejs\
+$rust\
+$golang\
+$cmd_duration\
+$line_break\
+$directory\
+$character"""
 
 [directory]
-format = "[ $path ]($style)"
+#format = "[ $path ]($style)"
+format = "[$path]($style)[$read_only]($read_only_style) "
 truncation_length = 3
 truncation_symbol = "…/"
 

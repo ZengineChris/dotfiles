@@ -18,34 +18,3 @@ vim.api.nvim_set_keymap("n", "<leader>dr", ":lua require('dapui').open({reset = 
 vim.api.nvim_set_keymap("n", "<leader>ht", ":lua require('harpoon.ui').toggle_quick_menu()<CR>", { noremap = true })
 
 local dap = require('dap')
-dap.adapters.ruby = function(callback, config)
-  callback {
-    type = "server",
-    host = "127.0.0.1",
-    port = "${port}",
-    executable = {
-      command = "bundle",
-      args = { "exec", "rdbg", "-n", "--open", "--port", "${port}",
-        "-c", "--", config.command, config.script,
-      },
-    },
-  }
-end
-
-dap.configurations.ruby = {
-  {
-    type = "ruby",
-    name = "ralis",
-    request = "attach",
-    localfs = true,
-    command = "rails server",
-  },
-  {
-    type = "ruby",
-    name = "run current spec file",
-    request = "attach",
-    localfs = true,
-    command = "rspec",
-    script = "${file}",
-  },
-}

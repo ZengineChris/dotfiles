@@ -19,6 +19,56 @@ require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim" }
     },
     {
+        "saghen/blink.cmp",
+        version = "*",
+        config = function()
+            require("blink.cmp").setup({
+                signature = { enabled = true },
+                appearance = {
+                    use_nvim_cmp_as_default = false,
+                    nerd_font_variant = "normal",
+                },
+                sources = {
+                    default = { "lsp", "path", "snippets", "buffer" },
+                    providers = {
+                        cmdline = {
+                            min_keyword_length = 2,
+                        },
+                    },
+                },
+                keymap = {
+                    ["<C-f>"] = {},
+                },
+                cmdline = {
+                    enabled = false,
+                    completion = { menu = { auto_show = true } },
+                    keymap = {
+                        ["<CR>"] = { "accept_and_enter", "fallback" },
+                    },
+                },
+                completion = {
+                    draw = {
+                        columns = {
+                            { "label",     "label_description", gap = 1 },
+                            { "kind_icon", "kind" }
+                        },
+                    },
+                    documentation = {
+                        window = {
+                            border = nil,
+                            scrollbar = false,
+                            winhighlight = 'Normal:BlinkCmpDoc,FloatBorder:BlinkCmpDocBorder,EndOfBuffer:BlinkCmpDoc',
+                        },
+                        auto_show = true,
+                        auto_show_delay_ms = 500,
+                    },
+                },
+            })
+
+            require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+    },
+    {
         "folke/todo-comments.nvim",
         dependencies = "nvim-lua/plenary.nvim",
         lazy = false,
@@ -26,10 +76,6 @@ require("lazy").setup({
             require("todo-comments").setup {}
         end
     },
-    { 'VonHeikemen/lsp-zero.nvim',        branch = 'v3.x' },
-    { 'neovim/nvim-lspconfig' },
-    { 'williamboman/mason.nvim' },
-    { 'williamboman/mason-lspconfig.nvim' },
     {
         'mfussenegger/nvim-dap',
     },
@@ -123,10 +169,6 @@ require("lazy").setup({
             "nvim-lua/plenary.nvim",
         },
     },
-
-    'ThePrimeagen/git-worktree.nvim',
-
-
     -- Fuzzy Finder (files, lsp, etc)
     { 'nvim-telescope/telescope.nvim',            branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     'nvim-telescope/telescope-symbols.nvim',
@@ -143,4 +185,5 @@ require("lazy").setup({
     },
     'folke/zen-mode.nvim',
     'theHamsta/nvim-dap-virtual-text',
+    'rebelot/kanagawa.nvim'
 })

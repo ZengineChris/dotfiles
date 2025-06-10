@@ -1,4 +1,4 @@
-{ pkgs, ...}: {
+{pkgs, ...}: {
   config = {
     environment.systemPackages = [
       pkgs.uutils-coreutils
@@ -13,6 +13,9 @@
       pkgs.curlie
       pkgs.lazygit
       pkgs.just
+
+      # temp
+      pkgs.docker_28
 
       pkgs.jq
       pkgs.bat
@@ -34,6 +37,7 @@
       # search for files by name, faster than find
       pkgs.fd
 
+      pkgs.inter
       pkgs.sad # CLI search and replace, just like sed, but with diff preview.
 
       # DevOps
@@ -47,6 +51,8 @@
       pkgs.kubernetes-helm
       pkgs.kubectl
       pkgs.doctl
+      # Experimental
+      #      pkgs.telepresence2
 
       # LSP's and linter to edit the dotfiles
       pkgs.alejandra

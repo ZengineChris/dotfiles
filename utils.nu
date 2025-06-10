@@ -3,12 +3,12 @@ export def darwin-switch [
     mode: string
 ] {
     if "debug" == $mode {
-        darwin-rebuild switch --flake $".#($name)" --show-trace --verbose
+        sudo darwin-rebuild switch --flake $".#($name)" --show-trace --verbose
     } else {
-        darwin-rebuild switch --flake $".#($name)"
+        sudo darwin-rebuild switch --flake $".#($name)"
     }
 }
 
 export def darwin-rollback [] {
-    darwin-rebuild --rollback
+    sudo darwin-rebuild --rollback
 }

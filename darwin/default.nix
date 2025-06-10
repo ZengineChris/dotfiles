@@ -1,11 +1,11 @@
-{pkgs, ...}: {
+{ pkgs, ... }: {
   users.users.christian = {
     name = "christian";
     home = "/Users/christian";
     shell = pkgs.nushell;
   };
 
-  environment.shells = [pkgs.nushell];
+  environment.shells = [ pkgs.nushell ];
   # System-wide environment variables
   environment.variables = {
     XDG_CONFIG_HOME = "/Users/christian/.config";
@@ -20,14 +20,16 @@
   };
 
   # Basic nix-darwin system configuration
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
   fonts.packages = [
     pkgs.nerd-fonts._0xproto
     pkgs.nerd-fonts.droid-sans-mono
     pkgs.nerd-fonts.jetbrains-mono
+    pkgs.nerd-fonts.fira-code
   ];
 
+  system.primaryUser = "christian";
   # System defaults
   system.defaults = {
     NSGlobalDomain = {

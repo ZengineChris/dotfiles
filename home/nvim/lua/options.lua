@@ -58,4 +58,3 @@ vim.opt.termguicolors = true
 
 vim.g.neoformat_try_node_exe = 1
 
-vim.diagnostic.config({virtual_lines = {current_line = true}})
