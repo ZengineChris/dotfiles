@@ -1,5 +1,8 @@
 {...}: {
   homebrew = {
+    global = {
+      autoUpdate = true;
+    };
     enable = true;
     brews = [
       {
@@ -12,11 +15,13 @@
       "gh"
       "gnupg"
       "posting"
+      #"opencode"
       "telepresenceio/telepresence/telepresence-oss"
     ];
     taps = [
       "FelixKratz/formulae"
       "nikitabobko/tap"
+      #      "opencode-ai/tap/opencode"
       "homebrew/services"
     ];
     casks = [
@@ -26,7 +31,7 @@
       "ghostty"
       "nikitabobko/tap/aerospace"
     ];
-    onActivation.cleanup = "zap";
+    onActivation.cleanup = "uninstall";
     onActivation.upgrade = true;
   };
 }

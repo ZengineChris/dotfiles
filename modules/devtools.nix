@@ -26,7 +26,6 @@
       pkgs.yazi
       pkgs.fd
       pkgs.delta # A viewer for git and diff output
-      pkgs.jujutsu
 
       pkgs.hyperfine # command-line benchmarking tool
       pkgs.gping # ping, but with a graph(TUI)

@@ -4,3 +4,5 @@ window-inherit-font-size = false
 
 clipboard-read = allow
 clipboard-write = allow
+background-opacity = 0.8
+background-blur = true
