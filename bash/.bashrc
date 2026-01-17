@@ -50,13 +50,13 @@ parse_git_branch() {
 # Prompt configuration
 set_prompt() {
     local last_status=$?
-    
+
     # Replace home directory with ~
     local dir="${PWD/#$HOME/\~}"
-    
+
     # Path segment (blue)
     local path_segment="\[\033[34m\]${dir}\[\033[0m\]"
-    
+
     # Git branch segment (yellow)
     local git_branch
     git_branch=$(parse_git_branch)
@@ -64,7 +64,25 @@ set_prompt() {
     if [ -n "$git_branch" ]; then
         git_segment=" on \[\033[33m\]${git_branch}\[\033[0m\]"
     fi
-    
+
+    # Nix/direnv indicator (cyan)
+    local nix_segment=""
+    if [ -n "${IN_NIX_SHELL-}" ]; then
+        nix_segment=" \[\033[36m\][nix]\[\033[0m\]"
+    elif [ -n "${DIRENV_DIR-}" ]; then
+        nix_segment=" \[\033[36m\][direnv]\[\033[0m\]"
+    fi
+
+    # Kubernetes context (magenta) - only when KUBECONFIG is explicitly set
+    local k8s_segment=""
+    if [ -n "${KUBECONFIG-}" ] && command -v kubectl &>/dev/null; then
+        local k8s_ctx
+        k8s_ctx=$(kubectl config current-context 2>/dev/null)
+        if [ -n "$k8s_ctx" ]; then
+            k8s_segment=" \[\033[35m\][k8s:${k8s_ctx}]\[\033[0m\]"
+        fi
+    fi
+
     # Status symbol (green checkmark or red X)
     local status=""
     if [ $last_status -ne 0 ]; then
@@ -72,8 +90,8 @@ set_prompt() {
     else
         status="\[\033[32m\]✓\[\033[0m\] "
     fi
-    
-    PS1="${status}${path_segment}${git_segment}\n❯ "
+
+    PS1="${status}${path_segment}${git_segment}${nix_segment}${k8s_segment}\n❯ "
 }
 
 # Session manager with sesh and fzf
@@ -125,9 +143,7 @@ kselect() {
 [[ -f /usr/share/blesh/ble.sh ]] && source /usr/share/blesh/ble.sh
 
 # Atuin initialization - BEFORE history settings
-if command -v atuin &>/dev/null; then
-    eval "$(atuin init bash)"
-fi
+eval "$(atuin init bash)"
 
 # History configuration - AFTER Atuin
 # Note: Atuin manages its own history, so these are minimal
@@ -137,14 +153,9 @@ export HISTCONTROL=ignoreboth  # Removed erasedups for Atuin compatibility
 export HISTTIMEFORMAT="%F %T "
 
 # Direnv hook
-if command -v direnv &>/dev/null; then
-    eval "$(direnv hook bash)"
-fi
-
+eval "$(direnv hook bash)"
 # Zoxide initialization
-if command -v zoxide &>/dev/null; then
-    eval "$(zoxide init bash)"
-fi
+eval "$(zoxide init bash)"
 
 # Carapace completion
 if command -v carapace &>/dev/null; then
@@ -155,5 +166,9 @@ fi
 # Prompt Configuration (must be after blesh)
 # ============================================================================
 
-# Set prompt command
-PROMPT_COMMAND=set_prompt
+# Set prompt command (compatible with blesh)
+if [[ ${BLE_VERSION-} ]]; then
+    blehook PRECMD+=set_prompt
+else
+    PROMPT_COMMAND=set_prompt
+fi
