@@ -1,0 +1,7 @@
+[[session]]
+name = "Downloads 📥"
+path = "~/Downloads"
+startup_command = "ls"
+
+[default_session]
+preview_command = "eza --all --git --icons --color=always {}"

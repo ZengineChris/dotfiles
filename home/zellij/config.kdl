@@ -1,6 +1,0 @@
-default_shell "nu"
-theme "kanagawa"
-default_layout "compact"
-pane_frames false
-simplified_ui true
-

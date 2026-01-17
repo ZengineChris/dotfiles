@@ -1,0 +1,5 @@
+--verbose
+--target=$HOME
+--ignore=README
+--ignore=LICENSE
+--ignore=.git

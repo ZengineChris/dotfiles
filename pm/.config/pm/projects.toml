@@ -1,0 +1,61 @@
+version = "1.0"
+
+[settings]
+default_output_format = "table"
+
+[hostings.custom]
+base_path = "~/git"
+url_pattern = ""
+
+[hostings.gitlab]
+base_path = "~/gitlab.com"
+url_pattern = "gitlab.com"
+
+[hostings.azure]
+base_path = "~/azure.com"
+url_pattern = "azure.com"
+
+[hostings.github]
+base_path = "~/github.com"
+url_pattern = "github.com"
+
+[[projects]]
+name = "pm"
+description = "The pm (Project Manager) CLI tool"
+repository_url = "git@github.com:ZengineChris/pm.git"
+is_worktree = false
+hosting = "github"
+local_path = "/home/chris/github.com/ZengineChris/pm"
+created_at = "2026-01-11T10:42:58.036037408Z"
+last_updated = "2026-01-11T10:42:58.036037408Z"
+
+[[projects]]
+name = "tm"
+description = "The tm (Task Mananger) CLI tool"
+repository_url = "git@github.com:ZengineChris/tm.git"
+is_worktree = false
+hosting = "github"
+local_path = "/home/chris/github.com/ZengineChris/tm"
+created_at = "2026-01-11T11:37:51.730469142Z"
+last_updated = "2026-01-11T11:37:51.730469142Z"
+
+[[projects]]
+name = "zengine.dev"
+description = "My Website"
+repository_url = "git@github.com:ZengineChris/zengine.dev.git"
+is_worktree = true
+worktree_branch = "main"
+hosting = "github"
+local_path = "/home/chris/github.com/ZengineChris/zengine.dev"
+created_at = "2026-01-11T15:02:02.367649736Z"
+last_updated = "2026-01-11T15:02:02.367649736Z"
+
+[[projects]]
+name = "dotfiles"
+description = "My dotfiles repository"
+repository_url = "git@github.com:ZengineChris/dotfiles.git"
+is_worktree = false
+hosting = "github"
+local_path = "/home/chris/github.com/ZengineChris/dotfiles"
+created_at = "2026-01-11T22:24:43.279046063Z"
+last_updated = "2026-01-11T22:24:43.279046063Z"
