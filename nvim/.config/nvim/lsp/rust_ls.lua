@@ -7,7 +7,7 @@ return {
     },
     root_markers = {
         ".git",
-        { "Cargo.toml" },
+        "Cargo.toml",
     },
     settings = {
         ["rust-analyzer"] = {

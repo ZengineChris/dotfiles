@@ -66,8 +66,9 @@ set_prompt() {
     fi
 
     # Nix/direnv indicator (cyan)
+    # Only show [nix] when IN_NIX_SHELL is "pure" or "impure" (set by nix-shell/nix develop)
     local nix_segment=""
-    if [ -n "${IN_NIX_SHELL-}" ]; then
+    if [[ ${IN_NIX_SHELL-} == "pure" || ${IN_NIX_SHELL-} == "impure" ]]; then
         nix_segment=" \[\033[36m\][nix]\[\033[0m\]"
     elif [ -n "${DIRENV_DIR-}" ]; then
         nix_segment=" \[\033[36m\][direnv]\[\033[0m\]"
@@ -166,9 +167,6 @@ fi
 # Prompt Configuration (must be after blesh)
 # ============================================================================
 
-# Set prompt command (compatible with blesh)
-if [[ ${BLE_VERSION-} ]]; then
-    blehook PRECMD+=set_prompt
-else
-    PROMPT_COMMAND=set_prompt
-fi
+# Append to PROMPT_COMMAND so set_prompt runs after direnv's hook
+# This ensures environment variables are updated before the prompt is set
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND;}set_prompt"
