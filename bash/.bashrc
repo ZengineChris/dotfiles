@@ -157,6 +157,8 @@ export HISTTIMEFORMAT="%F %T "
 eval "$(direnv hook bash)"
 # Zoxide initialization
 eval "$(zoxide init bash)"
+# Mise hook 
+eval "$(mise activate bash)"
 
 # Carapace completion
 if command -v carapace &>/dev/null; then
