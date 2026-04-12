@@ -15,6 +15,7 @@ fzf
 ghostty
 git
 grim
+grimblast
 htop
 hyprland
 hyprpicker

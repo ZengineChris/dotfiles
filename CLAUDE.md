@@ -68,15 +68,14 @@ yay -S --needed $(cat packages.txt)
 - **nvim/**: Neovim with lazy.nvim, LSP configs in .config/nvim/lsp/
 - **git/**: Git ignore patterns
 - **ghostty/**: Ghostty terminal config
-- **kitty/**: Kitty terminal config and themes
 - **hypr/**: Hyprland window manager (hyprland.conf)
 - **atuin/**: Shell history (config.toml)
 - **sesh/**: Session manager
 - **tm/**: Task manager (your custom tool)
 - **pm/**: Project manager (your custom tool)
 - **carapace/**: Shell completion engine
-- **starship/**: Shell prompt
-- **jj/**: Jujutsu VCS
+- **quickshell/**: Quickshell desktop shell (shell.qml)
+- **tmux/**: Tmux terminal multiplexer
 
 ## Stow Path Structure
 

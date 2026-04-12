@@ -34,7 +34,7 @@ echo "==> Stowing dotfiles..."
 cd "$DOTFILES_DIR"
 
 # Stow packages
-for dir in bash nvim git ghostty kitty hypr atuin sesh tm pm carapace starship jj; do
+for dir in atuin bash carapace ghostty git hypr nvim pm quickshell sesh tm tmux; do
     if [ -d "$dir" ]; then
         echo "Stowing $dir..."
         stow -v -t ~ "$dir"
