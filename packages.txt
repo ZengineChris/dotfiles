@@ -54,3 +54,5 @@ zoxide
 grimblast
 mate-polkit
 nodejs
+stow
+tmux

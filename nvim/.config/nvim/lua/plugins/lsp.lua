@@ -1,3 +1,5 @@
+vim.lsp.log.set_level('warn')
+
 vim.lsp.enable({
     "lua_ls",
     "nix_ls",

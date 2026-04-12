@@ -25,6 +25,5 @@ return {
     -- formatters_by_ft = { php = { "pint" } }
     -- formatters = { pint = { command = "./vendor/bin/pint", args = { "$FILENAME" }, stdin = false } }
     single_file_support = true,
-    log_level = vim.lsp.protocol.MessageType.Warning,
 }
 

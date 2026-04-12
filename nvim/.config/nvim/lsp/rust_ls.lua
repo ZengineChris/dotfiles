@@ -7,7 +7,7 @@ return {
     },
     root_markers = {
         ".git",
-        { "Cargo.toml" },
+        "Cargo.toml",
     },
     settings = {
         ["rust-analyzer"] = {
@@ -16,5 +16,4 @@ return {
         },
     },
     single_file_support = true,
-    log_level = vim.lsp.protocol.MessageType.Warning,
 }

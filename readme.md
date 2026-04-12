@@ -22,7 +22,7 @@ Each directory is a stow package — running `stow <name>` creates symlinks from
 
 ```bash
 mkdir -p newapp/.config/newapp
-cp -r ~/.config/newapp/* newapp/.config/newapp/
+cp -a ~/.config/newapp/. newapp/.config/newapp/
 stow newapp
 ```
 
