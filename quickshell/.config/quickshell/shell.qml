@@ -228,7 +228,7 @@ ShellRoot {
 
                         Image {
                             anchors.fill: parent
-                            source: "file:///home/tony/.config/quickshell/icons/tonybtw.png"
+                            source: ""
                             fillMode: Image.PreserveAspectFit
                         }
                     }
