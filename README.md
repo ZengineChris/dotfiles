@@ -39,15 +39,16 @@ Each directory represents an application:
 - `nvim/` - Neovim configuration
 - `git/` - Git configuration
 - `hypr/` - Hyprland window manager
-- `kitty/` - Kitty terminal
 - `ghostty/` - Ghostty terminal
 - `atuin/` - Shell history manager
 - `sesh/` - Session manager
 - `tm/` - Task manager
 - `pm/` - Project manager
 - `carapace/` - Shell completion
-- `starship/` - Shell prompt
-- `jj/` - Jujutsu VCS
+- `quickshell/` - Quickshell desktop shell
+- `tmux/` - Tmux terminal multiplexer
+
+> `wallpapers/` contains wallpaper assets and is not a stow package.
 
 ## Usage
 
@@ -84,7 +85,8 @@ yay -S --needed $(cat packages.txt)
 See `packages.txt` for full list. Highlights:
 - **Shell**: bash + blesh + atuin + zoxide + fzf
 - **Editor**: neovim with LSP
-- **Terminal**: ghostty, kitty
+- **Terminal**: ghostty
+- **Desktop Shell**: quickshell
 - **Window Manager**: hyprland
 - **Dev Tools**: git, kubectl, docker, and more
 - **CLI Utils**: ripgrep, fd, bat, eza, yazi
@@ -110,7 +112,7 @@ stow newapp
 
 ```bash
 cd ~/dotfiles
-stow -D bash nvim git ghostty kitty hypr atuin sesh tm pm carapace starship jj
+stow -D atuin bash carapace ghostty git hypr nvim pm quickshell sesh tm tmux
 ```
 
 ## License
