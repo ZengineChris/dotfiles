@@ -1,5 +1,5 @@
 require('keymaps')
-require('plugins.lazy')
+require('plugins.pack')
 require('plugins.lualine')
 require('options')
 require('plugins.tele')

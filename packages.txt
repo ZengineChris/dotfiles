@@ -49,3 +49,10 @@ wofi
 xh
 yay-bin
 yazi
+tree-sitter-cli
+zoxide
+grimblast
+mate-polkit
+nodejs
+stow
+tmux

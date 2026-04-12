@@ -1,17 +1,15 @@
 return {
     cmd = {
-        "ty",
-        "server",
+        "typescript-language-server",
+        "--stdio",
     },
     filetypes = {
-        "python",
+        "javascript",
     },
     root_markers = {
         ".git",
     },
     settings = {
-        ty = {
-        },
     },
 
     single_file_support = true,

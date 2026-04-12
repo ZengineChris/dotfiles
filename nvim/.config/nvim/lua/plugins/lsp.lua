@@ -1,3 +1,5 @@
+vim.lsp.log.set_level('warn')
+
 vim.lsp.enable({
     "lua_ls",
     "nix_ls",
@@ -31,17 +33,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
         -- See `:help K` for why this keymap
         nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
         nmap('<C-k>', vim.lsp.buf.signature_help, 'Signature Documentation')
-
-        local function client_supports_method(client, method, bufnr)
-            if vim.fn.has 'nvim-0.11' == 1 then
-                return client:supports_method(method, bufnr)
-            else
-                return client.supports_method(method, { bufnr = bufnr })
-            end
-        end
+        nmap('<leader>cl', vim.lsp.codelens.run, '[C]ode [L]ens run')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
-        if client and client_supports_method(client, vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
+
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, event.buf) then
+            vim.lsp.codelens.refresh()
+            vim.api.nvim_create_autocmd({ 'BufWritePost', 'InsertLeave' }, {
+                buffer = event.buf,
+                callback = vim.lsp.codelens.refresh,
+            })
+        end
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentHighlight, event.buf) then
             local highlight_augroup = vim.api.nvim_create_augroup('lsp-highlight', { clear = false })
 
             -- When cursor stops moving: Highlights all instances of the symbol under the cursor
