@@ -33,16 +33,3 @@ vim.pack.add({
     'https://github.com/saghen/blink.cmp',
 })
 
--- vim.pack puts plugins in opt/ for on-demand loading.
--- Load them all into the runtimepath so requires work normally.
-for _, name in ipairs({
-    'nvim-web-devicons', 'plenary.nvim',
-    'lualine.nvim', 'nvim',
-    'harpoon', 'oil.nvim',
-    'telescope.nvim', 'telescope-symbols.nvim', 'telescope-fzf-native.nvim',
-    'nvim-treesitter', 'nvim-treesitter-textobjects',
-    'nvim-dap', 'nvim-dap-ui', 'nvim-nio', 'nvim-dap-virtual-text',
-    'blink.cmp',
-}) do
-    vim.cmd('packadd ' .. name)
-end
