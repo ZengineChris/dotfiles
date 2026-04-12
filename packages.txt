@@ -6,7 +6,7 @@ cliphist
 dgop
 direnv
 discord
-dms-shell-bin
+dms-shell
 dolphin
 dunst
 eza
@@ -19,14 +19,12 @@ htop
 hyprland
 hyprpicker
 jq
-kitty
 kubectl
 lua-language-server
 matugen
 mpv
 nano
 neovim
-nushell
 obs-studio
 obsidian
 openssh
@@ -51,7 +49,6 @@ yay-bin
 yazi
 tree-sitter-cli
 zoxide
-grimblast
 mate-polkit
 nodejs
 stow
