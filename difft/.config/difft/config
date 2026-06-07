@@ -1,0 +1,3 @@
+export DFT_DISPLAY=side-by-side   # or inline
+export DFT_COLOR=always
+export DFT_TAB_WIDTH=4

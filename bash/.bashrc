@@ -43,6 +43,11 @@ alias rgv='rg --line-number --color=always "" \
         --preview-window "+{2}-5" \
   | awk -F: "{print \"+\"\$2, \$1}" \
   | xargs -r nvim'
+alias revieww='git diff --name-only \
+  | fzf --ansi \
+        --preview "difft --color always <(git show HEAD:{}) {}" \
+        --preview-window "right:70%" \
+        --bind "enter:execute(nvim {})"'
 alias npm="node $HOME/.npm-global-lib/bin/npm-cli.js"
 alias npx="node $HOME/.npm-global-lib/bin/npx-cli.js"
 
