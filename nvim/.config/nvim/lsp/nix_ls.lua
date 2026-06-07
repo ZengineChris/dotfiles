@@ -1,30 +1,16 @@
 return {
-    cmd = {
-        "nixd",
-    },
-    filetypes = {
-        "nix",
-    },
+    cmd = { "nil" },
+    filetypes = { "nix" },
     root_markers = {
         ".git",
+        "flake.nix",
     },
-    -- settings = {
-    --     Lua = {
-    --         diagnostics = {
-    --             --     disable = { "missing-parameters", "missing-fields" },
-    --         },
-    --     },
-    -- },
     settings = {
-        nixd = {
-            nixpkgs = {
-                expr = "import <nixpkgs> {} ",
-            },
+        ["nil"] = {
             formatting = {
                 command = { "alejandra" },
             },
         },
     },
-
     single_file_support = true,
 }

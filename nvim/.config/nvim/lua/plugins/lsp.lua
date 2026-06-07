@@ -6,6 +6,7 @@ vim.lsp.enable({
     "go_ls",
     "python_ls",
     "rust_ls",
+    "ts_ls",
 })
 
 vim.diagnostic.config({
@@ -36,6 +37,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
         nmap('<leader>cl', vim.lsp.codelens.run, '[C]ode [L]ens run')
 
         local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint, event.buf) then
+            vim.lsp.inlay_hint.enable(true, { bufnr = event.buf })
+        end
 
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens, event.buf) then
             vim.lsp.codelens.refresh()

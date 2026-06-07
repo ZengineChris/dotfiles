@@ -36,6 +36,13 @@ shopt -s globstar 2>/dev/null  # Enable ** for recursive globbing (bash 4+)
 alias ls='eza -l -m -a --no-permissions'
 alias grep='grep --color=auto'
 alias v='nvim'
+alias vf='nvim $(fzf --preview "bat --color always {}")'
+alias rgv='rg --line-number --color=always "" \
+  | fzf --ansi --exact --delimiter ":" \
+        --preview "bat --color=always --highlight-line {2} {1}" \
+        --preview-window "+{2}-5" \
+  | awk -F: "{print \"+\"\$2, \$1}" \
+  | xargs -r nvim'
 alias npm="node $HOME/.npm-global-lib/bin/npm-cli.js"
 alias npx="node $HOME/.npm-global-lib/bin/npx-cli.js"
 

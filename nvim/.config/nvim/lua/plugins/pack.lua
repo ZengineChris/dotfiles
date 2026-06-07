@@ -8,7 +8,7 @@ vim.pack.add({
     'https://github.com/catppuccin/nvim',
 
     -- Navigation
-    { src = 'https://github.com/ThePrimeagen/harpoon', version = 'harpoon2' },
+    { src = 'https://github.com/ThePrimeagen/harpoon',          version = 'harpoon2' },
     'https://github.com/stevearc/oil.nvim',
 
     -- Telescope
@@ -31,5 +31,10 @@ vim.pack.add({
 
     -- Completion
     'https://github.com/saghen/blink.cmp',
-})
 
+    -- AI Stuff
+    'https://github.com/ThePrimeagen/99',
+
+    -- Development
+    'file:///home/chris/github.com/motions-sh/motions-nvim/main',
+})
